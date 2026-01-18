@@ -1,5 +1,6 @@
 package com.svalero.enajenarte.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
@@ -10,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -54,4 +56,8 @@ public class Workshop {
     @ManyToOne
     @JoinColumn(name = "speaker_id")
     private Speaker speaker;
+
+    @OneToMany(mappedBy = "workshop")
+    @JsonBackReference
+    private List<Registration> registrations;
 }

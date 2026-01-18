@@ -11,6 +11,4 @@ import java.util.List;
 public interface RegistrationRepository extends CrudRepository<Registration, Long> {
     List<Registration> findByWorkshop(Workshop workshop);
     List<Registration> findAll();
-
-
 }

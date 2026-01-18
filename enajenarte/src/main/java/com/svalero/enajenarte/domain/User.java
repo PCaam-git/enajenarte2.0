@@ -2,9 +2,7 @@ package com.svalero.enajenarte.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,6 +33,7 @@ public class User {
 
     @Column
     @NotNull(message = "email is mandatory")
+    @Email(message = "email must be valid")
     private String email;
 
     @Column(name = "full_name")
@@ -54,9 +53,11 @@ public class User {
 
     @Column
     @Min(value = 0, message = "balance must be a positive number")
-    private double balance;
+    private float balance;
 
     @Column
+    @NotBlank(message = "role is mandatory")
+    @Pattern(regexp = "^(user|admin)$", message = "role must be 'user' or 'admin'")
     private String role;
 
     @OneToMany(mappedBy = "user")

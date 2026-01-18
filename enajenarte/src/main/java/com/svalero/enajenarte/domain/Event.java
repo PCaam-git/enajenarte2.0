@@ -38,7 +38,7 @@ public class Event {
 
     @Column(name = "entry_fee")
     @Min(value = 0, message = "entryFee must be a positive number")
-    private double entryFee;
+    private float entryFee;
 
     @Column(name = "is_public")
     private boolean isPublic;
