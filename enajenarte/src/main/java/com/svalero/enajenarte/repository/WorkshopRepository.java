@@ -9,6 +9,10 @@ import java.util.List;
 
 @Repository
 public interface WorkshopRepository extends CrudRepository<Workshop, Long> {
+
     List<Workshop> findAll();
+
     List<Workshop> findBySpeaker(Speaker speaker);
+    List<Workshop> findByNameContainingIgnoreCase(String name);
+    List<Workshop> findByIsOnline(boolean isOnline);
 }

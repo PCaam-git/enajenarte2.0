@@ -40,11 +40,23 @@ public class User {
     @NotNull(message = "fullName is mandatory")
     private String fullName;
 
+    @Column(name = "registration_date")
+    private LocalDate registrationDate;
+
     @Column
     @Min(value = 12, message = "age must be at least 12")
     @Max(value = 120, message = "age must be realistic")
     private int age;
 
+    @Column(name = "is_active")
+    private boolean active;
+
+    @Column
+    @Min(value = 0, message = "balance must be a positive number")
+    private float balance;
+
+    @Column
+    private String role;
 
     @OneToMany(mappedBy = "user")
     @JsonBackReference
