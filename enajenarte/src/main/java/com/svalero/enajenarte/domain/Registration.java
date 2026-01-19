@@ -46,7 +46,7 @@ public class Registration {
     @Column
     @Min(value = 1, message = "rating must be between 1 and 5")
     @Max(value = 5, message = "rating must be between 1 and 5")
-    private int rating;
+    private Integer rating;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
