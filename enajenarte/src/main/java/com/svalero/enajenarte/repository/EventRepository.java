@@ -11,7 +11,7 @@ public interface EventRepository extends CrudRepository<Event, Long> {
 
     List<Event> findAll();
 
-    // Filtros (hasta 3 campos) - estilo profesor: métodos derivados simples
+    // Filtros (3 campos)
     List<Event> findByTitleContainingIgnoreCase(String title);
     List<Event> findByLocationContainingIgnoreCase(String location);
     List<Event> findByIsPublic(boolean isPublic);

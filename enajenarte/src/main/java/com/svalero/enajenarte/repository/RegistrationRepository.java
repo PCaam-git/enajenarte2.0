@@ -13,7 +13,7 @@ public interface RegistrationRepository extends CrudRepository<Registration, Lon
 
     List<Registration> findAll();
 
-    // Filtros (hasta 3 campos)
+    // Filtros (3 campos)
     List<Registration> findByWorkshop(Workshop workshop);
     List<Registration> findByUser(User user);
     List<Registration> findByIsPaid(boolean isPaid);

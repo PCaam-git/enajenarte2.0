@@ -11,7 +11,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     List<User> findAll();
 
-    // Filtros (hasta 3 campos)
+    // Filtros (3 campos)
     List<User> findByUsernameContainingIgnoreCase(String username);
     List<User> findByEmailContainingIgnoreCase(String email);
     List<User> findByActive(boolean active);
