@@ -28,18 +28,7 @@ public class UserInDto {
     @NotEmpty(message = "fullName is mandatory")
     private String fullName;
 
-    private LocalDate registrationDate;
-
     @Min(value = 12, message = "age must be at least 12")
     @Max(value = 120, message = "age must be realistic")
     private int age;
-
-    private boolean active;
-
-    @Min(value = 0, message = "balance must be a positive number")
-    private float balance;
-
-    @NotEmpty(message = "role is mandatory")
-    @Pattern(regexp = "^(user|admin)$", message = "role must be 'user' or 'admin'")
-    private String role;
 }
