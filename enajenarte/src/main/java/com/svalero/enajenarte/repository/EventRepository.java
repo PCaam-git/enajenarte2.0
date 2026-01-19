@@ -8,5 +8,11 @@ import java.util.List;
 
 @Repository
 public interface EventRepository extends CrudRepository<Event, Long> {
+
     List<Event> findAll();
+
+    // Filtros (3 campos)
+    List<Event> findByTitleContainingIgnoreCase(String title);
+    List<Event> findByLocationContainingIgnoreCase(String location);
+    List<Event> findByIsPublic(boolean isPublic);
 }
