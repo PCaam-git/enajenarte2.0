@@ -34,6 +34,14 @@ public class UserService {
         return modelMapper.map(newUser, UserOutDto.class);
     }
 
+    public void delete(long id) throws UserNotFoundException {
+        User user = userRepository.findById(id)
+                .orElseThrow(UserNotFoundException::new);
+
+        userRepository.delete(user);
+    }
+
+
     public List<UserOutDto> findAll(String username, String email, String active) {
         List<User> users;
         if (!username.isEmpty()) {
