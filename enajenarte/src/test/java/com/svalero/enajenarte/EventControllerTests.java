@@ -5,6 +5,7 @@ import com.svalero.enajenarte.controller.EventController;
 import com.svalero.enajenarte.dto.EventInDto;
 import com.svalero.enajenarte.dto.EventOutDto;
 import com.svalero.enajenarte.exception.EventNotFoundException;
+import com.svalero.enajenarte.exception.SpeakerNotFoundException;
 import com.svalero.enajenarte.service.EventService;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
@@ -21,7 +22,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(EventController.class)
@@ -92,7 +93,19 @@ public class EventControllerTests {
         assertEquals("Mindfulness", eventsListResponse.getFirst().getTitle());
     }
 
-    // 404
+    @Test
+    public void testGetById() throws Exception {
+        EventOutDto outDto = new EventOutDto(7L, "Mindfulness", "Zaragoza",
+                LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 1L);
+
+        when(eventService.findById(7L)).thenReturn(outDto);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/events/7")
+                        .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk());
+    }
+
+    // GET 404
     @Test
     public void testGetById_NotFound() throws Exception {
         when(eventService.findById(99L)).thenThrow(new EventNotFoundException());
@@ -104,7 +117,44 @@ public class EventControllerTests {
                 .andExpect(status().isNotFound());
     }
 
-    // 400
+    // POST 400
+    @Test
+    public void testAdd() throws Exception {
+        EventInDto inDto = new EventInDto("Mindfulness", "Zaragoza",
+                LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 30, 1L);
+
+        EventOutDto outDto = new EventOutDto(10L, "Mindfulness", "Zaragoza",
+                LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 1L);
+
+        when(eventService.add(any(EventInDto.class))).thenReturn(outDto);
+
+        String body = objectMapper.writeValueAsString(inDto);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/events")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .content(body))
+                .andExpect(status().isCreated());
+    }
+
+    // POST 404
+    @Test
+    public void testAdd_SpeakerNotFound() throws Exception {
+        EventInDto inDto = new EventInDto("Mindfulness", "Zaragoza",
+                LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 30, 99L);
+
+        when(eventService.add(any(EventInDto.class))).thenThrow(new SpeakerNotFoundException());
+
+        String body = objectMapper.writeValueAsString(inDto);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/events")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .content(body))
+                .andExpect(status().isNotFound());
+    }
+
+    // POST 400
     @Test
     public void testAdd_BadRequest() throws Exception {
         // title vacío → @NotEmpty => 400
@@ -120,4 +170,100 @@ public class EventControllerTests {
                 )
                 .andExpect(status().isBadRequest());
     }
+
+    // PUT
+    @Test
+    public void testModify() throws Exception {
+        long id = 7L;
+
+        EventInDto inDto = new EventInDto("Mindfulness actualizado", "Zaragoza",
+                LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 30, 1L);
+
+        EventOutDto outDto = new EventOutDto(id, "Mindfulness actualizado", "Zaragoza",
+                LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 1L);
+
+        when(eventService.modify(eq(id), any(EventInDto.class))).thenReturn(outDto);
+
+        String body = objectMapper.writeValueAsString(inDto);
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/events/7")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .content(body))
+                .andExpect(status().isOk());
+    }
+
+    // PUT 404 - Not Found
+    @Test
+    public void testModify_NotFound() throws Exception {
+        long id = 99L;
+
+        EventInDto inDto = new EventInDto("Mindfulness", "Zaragoza",
+                LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 30, 1L);
+
+        when(eventService.modify(eq(id), any(EventInDto.class))).thenThrow(new EventNotFoundException());
+
+        String body = objectMapper.writeValueAsString(inDto);
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/events/99")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .content(body))
+                .andExpect(status().isNotFound());
+    }
+
+    // PUT 400
+    @Test
+    public void testModify_BadRequest() throws Exception {
+        long id = 7L;
+
+        // title vacío -> @NotEmpty -> 400
+        EventInDto invalidDto = new EventInDto("", "Zaragoza",
+                LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 30, 1L);
+
+        String body = objectMapper.writeValueAsString(invalidDto);
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/events/7")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .content(body))
+                .andExpect(status().isBadRequest());
+    }
+
+    // PUT 404
+    @Test
+    public void testModify_SpeakerNotFound() throws Exception {
+        long id = 7L;
+
+        EventInDto inDto = new EventInDto("Mindfulness", "Zaragoza",
+                LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 30, 99L);
+
+        when(eventService.modify(eq(id), any(EventInDto.class))).thenThrow(new SpeakerNotFoundException());
+
+        String body = objectMapper.writeValueAsString(inDto);
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/events/7")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .accept(MediaType.APPLICATION_JSON_VALUE)
+                        .content(body))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testDelete() throws Exception {
+        doNothing().when(eventService).delete(1L);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/events/1"))
+                .andExpect(status().isNoContent());
+    }
+
+    // DELETE 404
+    @Test
+    public void testDelete_NotFound() throws Exception {
+        doThrow(new EventNotFoundException()).when(eventService).delete(99L);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/events/99"))
+                .andExpect(status().isNotFound());
+    }
+
 }
