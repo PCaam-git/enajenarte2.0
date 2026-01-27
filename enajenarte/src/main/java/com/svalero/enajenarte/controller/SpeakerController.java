@@ -36,7 +36,7 @@ public class SpeakerController {
     }
 
     // GET BY ID
-    @GetMapping("/speaker/{id}")
+    @GetMapping("/speakers/{id}")
     public ResponseEntity<SpeakerOutDto> get(@PathVariable long id) throws SpeakerNotFoundException {
         SpeakerOutDto speakerOutDto = speakerService.findById(id);
         return ResponseEntity.ok(speakerOutDto);
@@ -79,14 +79,14 @@ public class SpeakerController {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    // 400 - Validacionesç
+    // 400 - Validaciones
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleException(MethodArgumentNotValidException manve) {
         Map<String, String> errors = new HashMap<>();
         manve.getBindingResult().getAllErrors().forEach(error -> {
-            String fieldname = ((FieldError) error).getField();
+            String fieldName = ((FieldError) error).getField();
             String message = error.getDefaultMessage();
-            errors.put(fieldname, message);
+            errors.put(fieldName, message);
         });
         ErrorResponse errorResponse = ErrorResponse.validationError(errors);
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);

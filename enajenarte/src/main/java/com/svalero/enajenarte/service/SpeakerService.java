@@ -20,22 +20,6 @@ public class SpeakerService {
     @Autowired
     public ModelMapper modelMapper;
 
-    public SpeakerOutDto add(SpeakerInDto speakerInDto) {
-        Speaker speaker= modelMapper.map(speakerInDto, Speaker.class);
-
-        // generado por el sistema
-        speaker.setWorkshopHoursTotal(0);
-
-        Speaker newSpeaker = speakerRepository.save(speaker);
-        return modelMapper.map(newSpeaker, SpeakerOutDto.class);
-    }
-
-    public void delete(long id) throws SpeakerNotFoundException {
-        Speaker speaker = speakerRepository.findById(id)
-                .orElseThrow(SpeakerNotFoundException::new);
-        speakerRepository.delete(speaker);
-    }
-
     public List<SpeakerOutDto> findAll(String speciality, String available, String yearsExperience) {
         List<Speaker> speakers;
 
@@ -60,6 +44,16 @@ public class SpeakerService {
         return modelMapper.map(speaker, SpeakerOutDto.class);
     }
 
+    public SpeakerOutDto add(SpeakerInDto speakerInDto) {
+        Speaker speaker= modelMapper.map(speakerInDto, Speaker.class);
+
+        // generado por el sistema
+        speaker.setWorkshopHoursTotal(0);
+
+        Speaker newSpeaker = speakerRepository.save(speaker);
+        return modelMapper.map(newSpeaker, SpeakerOutDto.class);
+    }
+
     public SpeakerOutDto modify(long id, SpeakerInDto speakerInDto) throws SpeakerNotFoundException {
         Speaker existingSpeaker = speakerRepository.findById(id)
                 .orElseThrow(SpeakerNotFoundException::new);
@@ -72,5 +66,11 @@ public class SpeakerService {
 
         Speaker updateSpeaker = speakerRepository.save(existingSpeaker);
         return modelMapper.map(updateSpeaker, SpeakerOutDto.class);
+    }
+
+    public void delete(long id) throws SpeakerNotFoundException {
+        Speaker speaker = speakerRepository.findById(id)
+                .orElseThrow(SpeakerNotFoundException::new);
+        speakerRepository.delete(speaker);
     }
 }

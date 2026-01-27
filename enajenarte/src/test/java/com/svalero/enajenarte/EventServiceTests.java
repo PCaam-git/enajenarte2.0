@@ -47,13 +47,13 @@ public class EventServiceTests {
                 new Event(2L, "Arte terapia", "Madrid", LocalDateTime.of(2026, 3, 1, 18, 0), 10, true, 50, null)
         );
 
-        List<EventOutDto> modelMapperOut = List.of(
+        List<EventOutDto> modelMapperEventOutDto = List.of(
                 new EventOutDto(1L, "Mindfulness", "Zaragoza", LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 1L),
                 new EventOutDto(2L, "Arte terapia", "Madrid", LocalDateTime.of(2026, 3, 1, 18, 0), 10, true, 1L)
         );
 
         when(eventRepository.findAll()).thenReturn(mockEventList);
-        when(modelMapper.map(mockEventList, new TypeToken<List<EventOutDto>>() {}.getType())).thenReturn(modelMapperOut);
+        when(modelMapper.map(mockEventList, new TypeToken<List<EventOutDto>>() {}.getType())).thenReturn(modelMapperEventOutDto);
 
         List<EventOutDto> actualEventList = eventService.findAll("", "", "");
 
@@ -62,9 +62,9 @@ public class EventServiceTests {
         assertEquals("Arte terapia", actualEventList.getLast().getTitle());
 
         verify(eventRepository, times(1)).findAll();
-        verify(eventRepository, times(0)).findByTitleContainingIgnoreCase("");
-        verify(eventRepository, times(0)).findByLocationContainingIgnoreCase("");
-        verify(eventRepository, times(0)).findByIsPublic(true);
+        verify(eventRepository, times(0)).findByTitleContainingIgnoreCase(anyString());
+        verify(eventRepository, times(0)).findByLocationContainingIgnoreCase(anyString());
+        verify(eventRepository, times(0)).findByIsPublic(anyBoolean());
     }
 
     @Test
@@ -74,13 +74,13 @@ public class EventServiceTests {
                 new Event(2L, "Mindfulness avanzado", "Zaragoza", LocalDateTime.of(2026, 2, 15, 10, 0), 0, true, 20, null)
         );
 
-        List<EventOutDto> modelMapperOut = List.of(
+        List<EventOutDto> modelMapperEventOutDto = List.of(
                 new EventOutDto(1L, "Mindfulness", "Zaragoza", LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 1L),
                 new EventOutDto(2L, "Mindfulness avanzado", "Zaragoza", LocalDateTime.of(2026, 2, 15, 10, 0), 0, true, 1L)
         );
 
         when(eventRepository.findByTitleContainingIgnoreCase("mind")).thenReturn(mockEventList);
-        when(modelMapper.map(mockEventList, new TypeToken<List<EventOutDto>>() {}.getType())).thenReturn(modelMapperOut);
+        when(modelMapper.map(mockEventList, new TypeToken<List<EventOutDto>>() {}.getType())).thenReturn(modelMapperEventOutDto);
 
         List<EventOutDto> actualEventList = eventService.findAll("mind", "", "");
 
@@ -93,20 +93,84 @@ public class EventServiceTests {
     }
 
     @Test
+    public void testFindAllByLocation() {
+        List<Event> mockEventList = List.of(
+                new Event(1L, "Mindfulness", "Zaragoza", LocalDateTime.of(2026, 2, 1, 10, 0),
+                        0, true, 30, null),
+                new Event(3L, "Yoga", "Zaragoza", LocalDateTime.of(2026, 2, 20, 18, 0),
+                        5, true, 25, null)
+        );
+
+        List<EventOutDto> modelMapperEventOutDto = List.of(
+                new EventOutDto(1L, "Mindfulness", "Zaragoza", LocalDateTime.of(2026, 2, 1, 10, 0),
+                        0, true, 1L),
+                new EventOutDto(3L, "Yoga", "Zaragoza", LocalDateTime.of(2026, 2, 20, 18, 0),
+                        5, true, 1L)
+        );
+
+        when(eventRepository.findByLocationContainingIgnoreCase("zaragoza")).thenReturn(mockEventList);
+        when(modelMapper.map(mockEventList, new TypeToken<List<EventOutDto>>() {}.getType()))
+                .thenReturn(modelMapperEventOutDto);
+
+        List<EventOutDto> actualEventList = eventService.findAll("", "zaragoza", "");
+
+        assertEquals(2, actualEventList.size());
+        assertEquals("Mindfulness", actualEventList.getFirst().getTitle());
+        assertEquals("Yoga", actualEventList.getLast().getTitle());
+
+        verify(eventRepository, times(0)).findAll();
+        verify(eventRepository, times(0)).findByTitleContainingIgnoreCase(anyString());
+        verify(eventRepository, times(1)).findByLocationContainingIgnoreCase("zaragoza");
+        verify(eventRepository, times(0)).findByIsPublic(anyBoolean());
+    }
+
+    @Test
+    public void testFindAllByIsPublic() {
+        List<Event> mockEventList = List.of(
+                new Event(1L, "Mindfulness", "Zaragoza", LocalDateTime.of(2026, 2, 1, 10, 0),
+                        0, true, 30, null),
+                new Event(2L, "Arte terapia", "Madrid", LocalDateTime.of(2026, 3, 1, 18, 0),
+                        10, true, 50, null)
+        );
+
+        List<EventOutDto> modelMapperEventOutDto = List.of(
+                new EventOutDto(1L, "Mindfulness", "Zaragoza", LocalDateTime.of(2026, 2, 1, 10, 0),
+                        0, true, 1L),
+                new EventOutDto(2L, "Arte terapia", "Madrid", LocalDateTime.of(2026, 3, 1, 18, 0),
+                        10, true, 1L)
+        );
+
+        when(eventRepository.findByIsPublic(true)).thenReturn(mockEventList);
+        when(modelMapper.map(mockEventList, new TypeToken<List<EventOutDto>>() {}.getType()))
+                .thenReturn(modelMapperEventOutDto);
+
+        List<EventOutDto> actualEventList = eventService.findAll("", "", "true");
+
+        assertEquals(2, actualEventList.size());
+        assertEquals("Mindfulness", actualEventList.getFirst().getTitle());
+        assertEquals("Arte terapia", actualEventList.getLast().getTitle());
+
+        verify(eventRepository, times(0)).findAll();
+        verify(eventRepository, times(0)).findByTitleContainingIgnoreCase(anyString());
+        verify(eventRepository, times(0)).findByLocationContainingIgnoreCase(anyString());
+        verify(eventRepository, times(1)).findByIsPublic(true);
+    }
+
+    @Test
     public void testFindById() throws EventNotFoundException {
         Event event = new Event(7L, "Mindfulness", "Zaragoza",
                 LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 30, null);
 
-        EventOutDto outDto = new EventOutDto(7L, "Mindfulness", "Zaragoza",
+        EventOutDto eventOutDto = new EventOutDto(7L, "Mindfulness", "Zaragoza",
                 LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 1L);
 
         when(eventRepository.findById(7L)).thenReturn(Optional.of(event));
-        when(modelMapper.map(event, EventOutDto.class)).thenReturn(outDto);
+        when(modelMapper.map(event, EventOutDto.class)).thenReturn(eventOutDto);
 
-        EventOutDto actual = eventService.findById(7L);
+        EventOutDto actualEventOutDto = eventService.findById(7L);
 
-        assertEquals(7L, actual.getId());
-        assertEquals("Mindfulness", actual.getTitle());
+        assertEquals(7L, actualEventOutDto.getId());
+        assertEquals("Mindfulness", actualEventOutDto.getTitle());
         verify(eventRepository, times(1)).findById(7L);
     }
 
@@ -120,7 +184,7 @@ public class EventServiceTests {
 
     @Test
     public void testAdd() throws SpeakerNotFoundException {
-        EventInDto inDto = new EventInDto("Mindfulness", "Zaragoza",
+        EventInDto eventInDto = new EventInDto("Mindfulness", "Zaragoza",
                 LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 30, 1L);
 
         Speaker speaker = new Speaker();
@@ -134,11 +198,11 @@ public class EventServiceTests {
                 LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 1L);
 
         when(speakerRepository.findById(1L)).thenReturn(Optional.of(speaker));
-        when(modelMapper.map(inDto, Event.class)).thenReturn(mappedEvent);
+        when(modelMapper.map(eventInDto, Event.class)).thenReturn(mappedEvent);
         when(eventRepository.save(mappedEvent)).thenReturn(savedEvent);
         when(modelMapper.map(savedEvent, EventOutDto.class)).thenReturn(outDto);
 
-        EventOutDto actual = eventService.add(inDto);
+        EventOutDto actual = eventService.add(eventInDto);
 
         assertEquals(10L, actual.getId());
         verify(speakerRepository, times(1)).findById(1L);
@@ -147,12 +211,12 @@ public class EventServiceTests {
 
     @Test
     public void testAdd_SpeakerNotFound() {
-        EventInDto inDto = new EventInDto("Mindfulness", "Zaragoza",
+        EventInDto eventInDto = new EventInDto("Mindfulness", "Zaragoza",
                 LocalDateTime.of(2026, 2, 1, 10, 0), 0, true, 30, 99L);
 
         when(speakerRepository.findById(99L)).thenReturn(Optional.empty());
 
-        assertThrows(SpeakerNotFoundException.class, () -> eventService.add(inDto));
+        assertThrows(SpeakerNotFoundException.class, () -> eventService.add(eventInDto));
         verify(speakerRepository, times(1)).findById(99L);
         verify(eventRepository, times(0)).save(any(Event.class));
     }
@@ -189,7 +253,7 @@ public class EventServiceTests {
         Speaker speaker = new Speaker();
         speaker.setId(1L);
 
-        EventInDto inDto = new EventInDto("Updated title", "Updated location",
+        EventInDto eventInDto = new EventInDto("Updated title", "Updated location",
                 LocalDateTime.of(2026, 3, 1, 10, 0), 10, false, 100, 1L);
 
         Event savedEvent = new Event();
@@ -202,12 +266,12 @@ public class EventServiceTests {
         when(eventRepository.findById(id)).thenReturn(Optional.of(existingEvent));
         when(speakerRepository.findById(1L)).thenReturn(Optional.of(speaker));
 
-        doNothing().when(modelMapper).map(inDto, existingEvent);
+        doNothing().when(modelMapper).map(eventInDto, existingEvent);
 
         when(eventRepository.save(existingEvent)).thenReturn(savedEvent);
         when(modelMapper.map(savedEvent, EventOutDto.class)).thenReturn(outDto);
 
-        EventOutDto actual = eventService.modify(id, inDto);
+        EventOutDto actual = eventService.modify(id, eventInDto);
 
         assertEquals(id, actual.getId());
         assertEquals("Updated title", actual.getTitle());
@@ -221,12 +285,12 @@ public class EventServiceTests {
     public void testModify_EventNotFound() {
         long id = 5L;
 
-        EventInDto inDto = new EventInDto("Updated title", "Updated location",
+        EventInDto eventInDto = new EventInDto("Updated title", "Updated location",
                 LocalDateTime.of(2026, 3, 1, 10, 0), 10, false, 100, 1L);
 
         when(eventRepository.findById(id)).thenReturn(Optional.empty());
 
-        assertThrows(EventNotFoundException.class, () -> eventService.modify(id, inDto));
+        assertThrows(EventNotFoundException.class, () -> eventService.modify(id, eventInDto));
         verify(eventRepository, times(1)).findById(id);
         verify(eventRepository, times(0)).save(any(Event.class));
     }
@@ -238,13 +302,13 @@ public class EventServiceTests {
         Event existingEvent = new Event();
         existingEvent.setId(id);
 
-        EventInDto inDto = new EventInDto("Updated title", "Updated location",
+        EventInDto eventInDto = new EventInDto("Updated title", "Updated location",
                 LocalDateTime.of(2026, 3, 1, 10, 0), 10, false, 100, 99L);
 
         when(eventRepository.findById(id)).thenReturn(Optional.of(existingEvent));
         when(speakerRepository.findById(99L)).thenReturn(Optional.empty());
 
-        assertThrows(SpeakerNotFoundException.class, () -> eventService.modify(id, inDto));
+        assertThrows(SpeakerNotFoundException.class, () -> eventService.modify(id, eventInDto));
         verify(eventRepository, times(1)).findById(id);
         verify(speakerRepository, times(1)).findById(99L);
         verify(eventRepository, times(0)).save(any(Event.class));
