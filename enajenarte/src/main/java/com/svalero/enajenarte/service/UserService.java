@@ -21,26 +21,6 @@ public class UserService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public UserOutDto add(UserInDto userInDto) {
-        User user = modelMapper.map(userInDto, User.class);
-
-        // generadas por el sistema
-        user.setRole("user");
-        user.setActive(true);
-        user.setBalance(0);
-        user.setRegistrationDate(LocalDate.now());
-
-        User newUser = userRepository.save(user);
-        return modelMapper.map(newUser, UserOutDto.class);
-    }
-
-    public void delete(long id) throws UserNotFoundException {
-        User user = userRepository.findById(id)
-                .orElseThrow(UserNotFoundException::new);
-
-        userRepository.delete(user);
-    }
-
 
     public List<UserOutDto> findAll(String username, String email, String active) {
         List<User> users;
@@ -61,6 +41,19 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(UserNotFoundException::new);
         return modelMapper.map(user, UserOutDto.class);
+    }
+
+    public UserOutDto add(UserInDto userInDto) {
+        User user = modelMapper.map(userInDto, User.class);
+
+        // generadas por el sistema
+        user.setRole("user");
+        user.setActive(true);
+        user.setBalance(0);
+        user.setRegistrationDate(LocalDate.now());
+
+        User newUser = userRepository.save(user);
+        return modelMapper.map(newUser, UserOutDto.class);
     }
 
     public UserOutDto modify(long id, UserInDto userInDto) throws UserNotFoundException {
@@ -85,4 +78,10 @@ public class UserService {
         return modelMapper.map(updateUser, UserOutDto.class);
     }
 
+    public void delete(long id) throws UserNotFoundException {
+        User user = userRepository.findById(id)
+                .orElseThrow(UserNotFoundException::new);
+
+        userRepository.delete(user);
+    }
 }

@@ -61,4 +61,5 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JsonBackReference
     private List<Registration> registrations;
+
 }

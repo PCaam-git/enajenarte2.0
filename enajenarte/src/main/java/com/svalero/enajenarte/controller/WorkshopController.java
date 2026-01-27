@@ -1,6 +1,5 @@
 package com.svalero.enajenarte.controller;
 
-import com.svalero.enajenarte.domain.Workshop;
 import com.svalero.enajenarte.dto.WorkshopInDto;
 import com.svalero.enajenarte.dto.WorkshopOutDto;
 import com.svalero.enajenarte.exception.ErrorResponse;
