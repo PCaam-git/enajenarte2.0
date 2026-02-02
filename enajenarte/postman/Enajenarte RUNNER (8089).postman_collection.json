@@ -1,0 +1,4921 @@
+{
+  "info": {
+    "_postman_id": "dbbb7a22-cddd-4b11-a87d-d7cdff0bd419",
+    "name": "Enajenarte RUNNER (8089)",
+    "description": "API para la empresa Enajenarte",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48848621",
+    "_collection_link": "https://go.postman.co/collection/48848621-dbbb7a22-cddd-4b11-a87d-d7cdff0bd419?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "OK",
+              "item": [
+                {
+                  "name": "Get users by id - OK (200)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 200\", function () {\r",
+                          "  pm.response.to.have.status(200);\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Response has id\", function () {\r",
+                          "  pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "1"
+                      ]
+                    },
+                    "description": "Devuelve un usuario específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put users by id - OK (200)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 200\", function () {\r",
+                          "  pm.response.to.have.status(200);\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Response has id\", function () {\r",
+                          "  pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"patricia\",\n  \"password\": \"password123\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia User\",\n  \"age\": 25\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "1"
+                      ]
+                    },
+                    "description": "Actualiza un usuario existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete users by id - OK (204)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 204\", function () {\r",
+                          "  pm.response.to.have.status(204);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "1"
+                      ]
+                    },
+                    "description": "Elimina un usuario del sistema"
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Errors",
+              "item": [
+                {
+                  "name": "Get users by id - 404 (404)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 404\", function () {\r",
+                          "  pm.response.to.have.status(404);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "999"
+                      ]
+                    },
+                    "description": "Devuelve un usuario específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Get users by id - 500 (500)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 500\", function () {\r",
+                          "  pm.response.to.have.status(500);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "500"
+                      ]
+                    },
+                    "description": "Devuelve un usuario específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put users by id - 400 (400)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 400\", function () {\r",
+                          "  pm.response.to.have.status(400);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"patricia\",\n  \"password\": \"password123\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia User\",\n  \"age\": 25\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/400",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "400"
+                      ]
+                    },
+                    "description": "Actualiza un usuario existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put users by id - 404 (404)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 404\", function () {\r",
+                          "  pm.response.to.have.status(404);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"patricia\",\n  \"password\": \"password123\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia User\",\n  \"age\": 25\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "999"
+                      ]
+                    },
+                    "description": "Actualiza un usuario existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put users by id - 500 (500)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 500\", function () {\r",
+                          "  pm.response.to.have.status(500);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"patricia\",\n  \"password\": \"password123\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia User\",\n  \"age\": 25\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "500"
+                      ]
+                    },
+                    "description": "Actualiza un usuario existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete users by id - 404 (404)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 404\", function () {\r",
+                          "  pm.response.to.have.status(404);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "999"
+                      ]
+                    },
+                    "description": "Elimina un usuario del sistema"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete users by id - 500 (500)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 500\", function () {\r",
+                          "  pm.response.to.have.status(500);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "500"
+                      ]
+                    },
+                    "description": "Elimina un usuario del sistema"
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "OK",
+          "item": [
+            {
+              "name": "Get users - OK (200)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "  pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response is array and first item has id\", function () {\r",
+                      "  const json = pm.response.json();\r",
+                      "  pm.expect(json).to.be.an(\"array\");\r",
+                      "  pm.expect(json.length).to.be.above(0);\r",
+                      "  pm.expect(json[0]).to.have.property(\"id\");\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"admin\",\n  \"email\": \"admin@mail.com\",\n  \"fullName\": \"Admin User\",\n  \"role\": \"admin\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Post users - OK (201)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {\r",
+                      "  pm.response.to.have.status(201);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response has id\", function () {\r",
+                      "  pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"admin\",\n  \"email\": \"admin@mail.com\",\n  \"fullName\": \"Admin User\",\n  \"role\": \"admin\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                },
+                "description": "Registra un nuevo usuario en el sistema"
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Errors",
+          "item": [
+            {
+              "name": "Get users - 500 (500)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 500\", function () {\r",
+                      "  pm.response.to.have.status(500);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/500",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "500"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Post users - 400 (400)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "  pm.response.to.have.status(400);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"admin\",\n  \"email\": \"admin@mail.com\",\n  \"fullName\": \"Admin User\",\n  \"role\": \"admin\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/400",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "400"
+                  ]
+                },
+                "description": "Registra un nuevo usuario en el sistema"
+              },
+              "response": []
+            },
+            {
+              "name": "Post users - 404 (404)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "  pm.response.to.have.status(404);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"admin\",\n  \"email\": \"admin@mail.com\",\n  \"fullName\": \"Admin User\",\n  \"role\": \"admin\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/404",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "404"
+                  ]
+                },
+                "description": "Registra un nuevo usuario en el sistema"
+              },
+              "response": []
+            },
+            {
+              "name": "Post users - 500 (500)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 500\", function () {\r",
+                      "  pm.response.to.have.status(500);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"admin\",\n  \"email\": \"admin@mail.com\",\n  \"fullName\": \"Admin User\",\n  \"role\": \"admin\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/500",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    "500"
+                  ]
+                },
+                "description": "Registra un nuevo usuario en el sistema"
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "OK",
+              "item": [
+                {
+                  "name": "Get events by id -  OK (200)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 200\", function () {\r",
+                          "  pm.response.to.have.status(200);\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Response has id\", function () {\r",
+                          "  pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        "1"
+                      ]
+                    },
+                    "description": "Devuelve un evento específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put events by id - OK (200)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 200\", function () {\r",
+                          "  pm.response.to.have.status(200);\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Response has id\", function () {\r",
+                          "  pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Mindfulness Workshop\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"isPublic\": true,\n  \"entryFee\": 20.5,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/events/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        "1"
+                      ]
+                    },
+                    "description": "Actualiza un evento existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete events by id - OK (204)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 204\", function () {\r",
+                          "  pm.response.to.have.status(204);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        "1"
+                      ]
+                    },
+                    "description": "Elimina un evento del sistema"
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Errors",
+              "item": [
+                {
+                  "name": "Get events by id -  404 (404)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 404\", function () {\r",
+                          "  pm.response.to.have.status(404);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        "999"
+                      ]
+                    },
+                    "description": "Devuelve un evento específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Get events by id -  500 (500)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 500\", function () {\r",
+                          "  pm.response.to.have.status(500);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        "500"
+                      ]
+                    },
+                    "description": "Devuelve un evento específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put events by id - 400 (400)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 400\", function () {\r",
+                          "  pm.response.to.have.status(400);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Mindfulness Workshop\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"isPublic\": true,\n  \"entryFee\": 20.5,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/events/400",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        "400"
+                      ]
+                    },
+                    "description": "Actualiza un evento existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put events by id - 404 (404)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 404\", function () {\r",
+                          "  pm.response.to.have.status(404);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Mindfulness Workshop\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"isPublic\": true,\n  \"entryFee\": 20.5,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/events/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        "999"
+                      ]
+                    },
+                    "description": "Actualiza un evento existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put events by id - 500 (500)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 500\", function () {\r",
+                          "  pm.response.to.have.status(500);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Mindfulness Workshop\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"isPublic\": true,\n  \"entryFee\": 20.5,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/events/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        "500"
+                      ]
+                    },
+                    "description": "Actualiza un evento existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete events by id - 404 (404)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 404\", function () {\r",
+                          "  pm.response.to.have.status(404);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        "999"
+                      ]
+                    },
+                    "description": "Elimina un evento del sistema"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete events by id - 500 (500)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 500\", function () {\r",
+                          "  pm.response.to.have.status(500);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        "500"
+                      ]
+                    },
+                    "description": "Elimina un evento del sistema"
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "OK",
+          "item": [
+            {
+              "name": "Get events - OK (200)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "  pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response is array and first item has id\", function () {\r",
+                      "  const json = pm.response.json();\r",
+                      "  pm.expect(json).to.be.an(\"array\");\r",
+                      "  pm.expect(json.length).to.be.above(0);\r",
+                      "  pm.expect(json[0]).to.have.property(\"id\");\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "key": "title",
+                      "value": "string",
+                      "description": "Filtrar por título",
+                      "disabled": true
+                    },
+                    {
+                      "key": "location",
+                      "value": "string",
+                      "description": "Filtrar por ubicación",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isPublic",
+                      "value": "string",
+                      "description": "Filtrar por asistencia pública",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "description": "Devuelve una lista de eventos con opciones de filtrado"
+              },
+              "response": []
+            },
+            {
+              "name": "Post events - OK (201)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {\r",
+                      "  pm.response.to.have.status(201);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response has id\", function () {\r",
+                      "  pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Mindfulness Workshop\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"isPublic\": true,\n  \"entryFee\": 20.5,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ]
+                },
+                "description": "Registra un nuevo evento en el sistema"
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Errors",
+          "item": [
+            {
+              "name": "Get events - 500 (500)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 500\", function () {\r",
+                      "  pm.response.to.have.status(500);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events/500",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events",
+                    "500"
+                  ],
+                  "query": [
+                    {
+                      "key": "title",
+                      "value": "string",
+                      "description": "Filtrar por título",
+                      "disabled": true
+                    },
+                    {
+                      "key": "location",
+                      "value": "string",
+                      "description": "Filtrar por ubicación",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isPublic",
+                      "value": "string",
+                      "description": "Filtrar por asistencia pública",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "description": "Devuelve una lista de eventos con opciones de filtrado"
+              },
+              "response": []
+            },
+            {
+              "name": "Post events - 400 (400)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "  pm.response.to.have.status(400);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Mindfulness Workshop\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"isPublic\": true,\n  \"entryFee\": 20.5,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events/400",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events",
+                    "400"
+                  ]
+                },
+                "description": "Registra un nuevo evento en el sistema"
+              },
+              "response": []
+            },
+            {
+              "name": "Post events - 404 (404)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "  pm.response.to.have.status(404);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Mindfulness Workshop\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"isPublic\": true,\n  \"entryFee\": 20.5,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events/404",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events",
+                    "404"
+                  ]
+                },
+                "description": "Registra un nuevo evento en el sistema"
+              },
+              "response": []
+            },
+            {
+              "name": "Post events - 500 (500)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 500\", function () {\r",
+                      "  pm.response.to.have.status(500);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Mindfulness Workshop\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"isPublic\": true,\n  \"entryFee\": 20.5,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events/500",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events",
+                    "500"
+                  ]
+                },
+                "description": "Registra un nuevo evento en el sistema"
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "speakers",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "OK",
+              "item": [
+                {
+                  "name": "Get speakers by id - OK (200)",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        "1"
+                      ]
+                    },
+                    "description": "Devuelve un ponente específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put speakers by id - OK (200)",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Ana\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"ana@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2025-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        "1"
+                      ]
+                    },
+                    "description": "Actualiza un ponente existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete speakers by id - OK (204)",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    },
+                    "description": "Elimina un ponente del sistema"
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Errors",
+              "item": [
+                {
+                  "name": "Get speakers by id - 404 (404)",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        "999"
+                      ]
+                    },
+                    "description": "Devuelve un ponente específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Get speakers by id - 500 (500)",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        "500"
+                      ]
+                    },
+                    "description": "Devuelve un ponente específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put speakers by id - 400 (400)",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Ana\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"ana@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2025-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/400",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        "400"
+                      ]
+                    },
+                    "description": "Actualiza un ponente existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put speakers by id - 404 (404)",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Ana\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"ana@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2025-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        "999"
+                      ]
+                    },
+                    "description": "Actualiza un ponente existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put speakers by id - 500 (500)",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Ana\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"ana@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2025-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        "500"
+                      ]
+                    },
+                    "description": "Actualiza un ponente existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete speakers by id - 404 (404)",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        "999"
+                      ]
+                    },
+                    "description": "Elimina un ponente del sistema"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete speakers by id - 500 (500)",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        "500"
+                      ]
+                    },
+                    "description": "Elimina un ponente del sistema"
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "OK",
+          "item": [
+            {
+              "name": "Get speakers - OK (200)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "  pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response has id\", function () {\r",
+                      "  const json = pm.response.json();\r",
+                      "  pm.expect(json).to.be.an(\"array\");\r",
+                      "  pm.expect(json.length).to.be.above(0);\r",
+                      "  pm.expect(json[0]).to.have.property(\"id\");\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/speakers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers"
+                  ],
+                  "query": [
+                    {
+                      "key": "speciality",
+                      "value": "string",
+                      "description": "Filtrar por especialidad",
+                      "disabled": true
+                    },
+                    {
+                      "key": "available",
+                      "value": "string",
+                      "description": "Filtrar por disponibilidad",
+                      "disabled": true
+                    },
+                    {
+                      "key": "yearsExperience",
+                      "value": "string",
+                      "description": "Filtrar por años de experiencia",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "description": "Devuelve una lista de ponentes con opciones de filtrado"
+              },
+              "response": [
+                {
+                  "name": "Lista de ponentes obtenida exitosamente",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers?speciality=string&available=string&yearsExperience=string",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filtrar por especialidad",
+                          "key": "speciality",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Filtrar por disponibilidad",
+                          "key": "available",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Filtrar por años de experiencia",
+                          "key": "yearsExperience",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "[\n  {\n    \"id\": 1,\n    \"firstName\": \"Cristina\",\n    \"lastName\": \"Lopez\",\n    \"email\": \"cristina@mail.com\",\n    \"speciality\": \"mindfulness\",\n    \"yearsExperience\": 5\n  }\n]"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers?speciality=string&available=string&yearsExperience=string",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filtrar por especialidad",
+                          "key": "speciality",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Filtrar por disponibilidad",
+                          "key": "available",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Filtrar por años de experiencia",
+                          "key": "yearsExperience",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Post speakers - OK (201)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {\r",
+                      "  pm.response.to.have.status(201);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response has id\", function () {\r",
+                      "  pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Ana\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"ana@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2025-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/speakers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers"
+                  ]
+                },
+                "description": "Registra un nuevo ponente en el sistema"
+              },
+              "response": [
+                {
+                  "name": "Ponente creado exitosamente",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5\n}"
+                },
+                {
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Validation error\",\n  \"title\": \"bad-request\"\n}"
+                },
+                {
+                  "name": "Workshop not found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Errors",
+          "item": [
+            {
+              "name": "Get speakers - 500 (500)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/speakers/500",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers",
+                    "500"
+                  ],
+                  "query": [
+                    {
+                      "key": "speciality",
+                      "value": "string",
+                      "description": "Filtrar por especialidad",
+                      "disabled": true
+                    },
+                    {
+                      "key": "available",
+                      "value": "string",
+                      "description": "Filtrar por disponibilidad",
+                      "disabled": true
+                    },
+                    {
+                      "key": "yearsExperience",
+                      "value": "string",
+                      "description": "Filtrar por años de experiencia",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "description": "Devuelve una lista de ponentes con opciones de filtrado"
+              },
+              "response": [
+                {
+                  "name": "Lista de ponentes obtenida exitosamente",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers?speciality=string&available=string&yearsExperience=string",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filtrar por especialidad",
+                          "key": "speciality",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Filtrar por disponibilidad",
+                          "key": "available",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Filtrar por años de experiencia",
+                          "key": "yearsExperience",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "[\n  {\n    \"id\": 1,\n    \"firstName\": \"Cristina\",\n    \"lastName\": \"Lopez\",\n    \"email\": \"cristina@mail.com\",\n    \"speciality\": \"mindfulness\",\n    \"yearsExperience\": 5\n  }\n]"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers?speciality=string&available=string&yearsExperience=string",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filtrar por especialidad",
+                          "key": "speciality",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Filtrar por disponibilidad",
+                          "key": "available",
+                          "value": "string"
+                        },
+                        {
+                          "description": "Filtrar por años de experiencia",
+                          "key": "yearsExperience",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Post speakres - 400 (400)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Ana\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"ana@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2025-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/speakers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers"
+                  ]
+                },
+                "description": "Registra un nuevo ponente en el sistema"
+              },
+              "response": [
+                {
+                  "name": "Ponente creado exitosamente",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5\n}"
+                },
+                {
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Validation error\",\n  \"title\": \"bad-request\"\n}"
+                },
+                {
+                  "name": "Workshop not found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Post speakres - 404 (404)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Ana\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"ana@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2025-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/speakers/400",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers",
+                    "400"
+                  ]
+                },
+                "description": "Registra un nuevo ponente en el sistema"
+              },
+              "response": [
+                {
+                  "name": "Ponente creado exitosamente",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5\n}"
+                },
+                {
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Validation error\",\n  \"title\": \"bad-request\"\n}"
+                },
+                {
+                  "name": "Workshop not found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Post speakres - 500 (500)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Ana\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"ana@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2025-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/speakers/500",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers",
+                    "500"
+                  ]
+                },
+                "description": "Registra un nuevo ponente en el sistema"
+              },
+              "response": [
+                {
+                  "name": "Ponente creado exitosamente",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5\n}"
+                },
+                {
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Validation error\",\n  \"title\": \"bad-request\"\n}"
+                },
+                {
+                  "name": "Workshop not found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "workshops",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "OK",
+              "item": [
+                {
+                  "name": "Get workshops by id - OK (200)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 200\", function () {\r",
+                          "  pm.response.to.have.status(200);\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Response has id\", function () {\r",
+                          "  pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        "1"
+                      ]
+                    },
+                    "description": "Devuelve un taller específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put workshops by id - OK (200)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 200\", function () {\r",
+                          "  pm.response.to.have.status(200);\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Response has id\", function () {\r",
+                          "  pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        "1"
+                      ]
+                    },
+                    "description": "Actualiza un taller existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete workshops by id - OK (204)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 204\", function () {\r",
+                          "  pm.response.to.have.status(204);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        "1"
+                      ]
+                    },
+                    "description": "Elimina un taller del sistema"
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Errors",
+              "item": [
+                {
+                  "name": "Get workshops by id - 404 (404)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 404\", function () {\r",
+                          "  pm.response.to.have.status(404);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        "999"
+                      ]
+                    },
+                    "description": "Devuelve un taller específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Get workshops by id - 500 (500)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 500\", function () {\r",
+                          "  pm.response.to.have.status(500);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        "500"
+                      ]
+                    },
+                    "description": "Devuelve un taller específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put workshops by id - 400 (400)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 400\", function () {\r",
+                          "  pm.response.to.have.status(400);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/400",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        "400"
+                      ]
+                    },
+                    "description": "Actualiza un taller existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put workshops by id - 404 (404)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 404\", function () {\r",
+                          "  pm.response.to.have.status(404);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        "999"
+                      ]
+                    },
+                    "description": "Actualiza un taller existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put workshops by id - 500 (500)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 500\", function () {\r",
+                          "  pm.response.to.have.status(500);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        "500"
+                      ]
+                    },
+                    "description": "Actualiza un taller existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete workshops by id - 404 (404)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 404\", function () {\r",
+                          "  pm.response.to.have.status(404);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        "999"
+                      ]
+                    },
+                    "description": "Elimina un taller del sistema"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete workshops by id - 500 (500)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 500\", function () {\r",
+                          "  pm.response.to.have.status(500);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        "500"
+                      ]
+                    },
+                    "description": "Elimina un taller del sistema"
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "OK",
+          "item": [
+            {
+              "name": "Get workshops - OK (200)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "  pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response has id\", function () {\r",
+                      "  const json = pm.response.json();\r",
+                      "  pm.expect(json).to.be.an(\"array\");\r",
+                      "  pm.expect(json.length).to.be.above(0);\r",
+                      "  pm.expect(json[0]).to.have.property(\"id\");\r",
+                      "});\r",
+                      "\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workshops",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "string",
+                      "description": "Filtrar por nombre (contiene)",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isOnline",
+                      "value": "string",
+                      "description": "Filtrar por modalidad online",
+                      "disabled": true
+                    },
+                    {
+                      "key": "speakerId",
+                      "value": "string",
+                      "description": "Filtrar por ID del ponente",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "description": "Devuelve una lista de talleres con opciones de filtrado"
+              },
+              "response": []
+            },
+            {
+              "name": "Post workshops - OK (201)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {\r",
+                      "  pm.response.to.have.status(201);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response has id\", function () {\r",
+                      "  pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workshops",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops"
+                  ]
+                },
+                "description": "Registra un nuevo taller en el sistema"
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Errors",
+          "item": [
+            {
+              "name": "Get workshops - 500 (500)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 500\", function () {\r",
+                      "  pm.response.to.have.status(500);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workshops/500",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops",
+                    "500"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "string",
+                      "description": "Filtrar por nombre (contiene)",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isOnline",
+                      "value": "string",
+                      "description": "Filtrar por modalidad online",
+                      "disabled": true
+                    },
+                    {
+                      "key": "speakerId",
+                      "value": "string",
+                      "description": "Filtrar por ID del ponente",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "description": "Devuelve una lista de talleres con opciones de filtrado"
+              },
+              "response": []
+            },
+            {
+              "name": "Post workshops - 400 (400)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "  pm.response.to.have.status(400);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workshops/400",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops",
+                    "400"
+                  ]
+                },
+                "description": "Registra un nuevo taller en el sistema"
+              },
+              "response": []
+            },
+            {
+              "name": "Post workshops - 404 (404)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "  pm.response.to.have.status(404);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workshops/404",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops",
+                    "404"
+                  ]
+                },
+                "description": "Registra un nuevo taller en el sistema"
+              },
+              "response": []
+            },
+            {
+              "name": "Post workshops - 500 (500)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 500\", function () {\r",
+                      "  pm.response.to.have.status(500);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workshops/500",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops",
+                    "500"
+                  ]
+                },
+                "description": "Registra un nuevo taller en el sistema"
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "registrations",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "OK",
+              "item": [
+                {
+                  "name": "Get registrations by id - OK (200)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 200\", function () {\r",
+                          "  pm.response.to.have.status(200);\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Response has id\", function () {\r",
+                          "  pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        "1"
+                      ]
+                    },
+                    "description": "Devuelve un registro específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put registrations by id - OK (200)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 200\", function () {\r",
+                          "  pm.response.to.have.status(200);\r",
+                          "});\r",
+                          "\r",
+                          "pm.test(\"Response has id\", function () {\r",
+                          "  pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        "1"
+                      ]
+                    },
+                    "description": "Actualiza un registro existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete registrations by id - OK (204)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 204\", function () {\r",
+                          "  pm.response.to.have.status(204);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        "1"
+                      ]
+                    },
+                    "description": "Elimina un registro del sistema"
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Errors",
+              "item": [
+                {
+                  "name": "Delete registrations by id - 404 (404)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 404\", function () {\r",
+                          "  pm.response.to.have.status(404);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        "999"
+                      ]
+                    },
+                    "description": "Elimina un registro del sistema"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete registrations by id - 500 (500)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 500\", function () {\r",
+                          "  pm.response.to.have.status(500);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        "500"
+                      ]
+                    },
+                    "description": "Elimina un registro del sistema"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Get registrations by id - 404 (404)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 404\", function () {\r",
+                          "  pm.response.to.have.status(404);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        "999"
+                      ]
+                    },
+                    "description": "Devuelve un registro específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Get registrations by id - 500 (500)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 500\", function () {\r",
+                          "  pm.response.to.have.status(500);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        "500"
+                      ]
+                    },
+                    "description": "Devuelve un registro específico por su ID"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put registrations by id - 400 (400)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 400\", function () {\r",
+                          "  pm.response.to.have.status(400);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/400",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        "400"
+                      ]
+                    },
+                    "description": "Actualiza un registro existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put registrations by id - 404 (404)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 404\", function () {\r",
+                          "  pm.response.to.have.status(404);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/999",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        "999"
+                      ]
+                    },
+                    "description": "Actualiza un registro existente"
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Put registrations by id - 500 (500)",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "pm.test(\"Status code is 500\", function () {\r",
+                          "  pm.response.to.have.status(500);\r",
+                          "});\r",
+                          ""
+                        ],
+                        "type": "text/javascript",
+                        "packages": {},
+                        "requests": {}
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/500",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        "500"
+                      ]
+                    },
+                    "description": "Actualiza un registro existente"
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "OK",
+          "item": [
+            {
+              "name": "Get registrations - OK (200)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "  pm.response.to.have.status(200);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response is array and first item has id\", function () {\r",
+                      "  const json = pm.response.json();\r",
+                      "  pm.expect(json).to.be.an(\"array\");\r",
+                      "  pm.expect(json.length).to.be.above(0);\r",
+                      "  pm.expect(json[0]).to.have.property(\"id\");\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/registrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "string",
+                      "description": "Filtrar por ID del usuario",
+                      "disabled": true
+                    },
+                    {
+                      "key": "workshopId",
+                      "value": "string",
+                      "description": "Filtrar por ID del taller",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isPaid",
+                      "value": "string",
+                      "description": "Filtrar por estado de pago",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "description": "Devuelve una lista de registros con opciones de filtrado"
+              },
+              "response": []
+            },
+            {
+              "name": "Post registrations - OK (201)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {\r",
+                      "  pm.response.to.have.status(201);\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Response has id\", function () {\r",
+                      "  pm.expect(pm.response.json()).to.have.property(\"id\");\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/registrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations"
+                  ]
+                },
+                "description": "Registra un nuevo registro en el sistema"
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Errors",
+          "item": [
+            {
+              "name": "Get registrations - 500 (500)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 500\", function () {\r",
+                      "  pm.response.to.have.status(500);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/registrations/500",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations",
+                    "500"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "string",
+                      "description": "Filtrar por ID del usuario",
+                      "disabled": true
+                    },
+                    {
+                      "key": "workshopId",
+                      "value": "string",
+                      "description": "Filtrar por ID del taller",
+                      "disabled": true
+                    },
+                    {
+                      "key": "isPaid",
+                      "value": "string",
+                      "description": "Filtrar por estado de pago",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "description": "Devuelve una lista de registros con opciones de filtrado"
+              },
+              "response": []
+            },
+            {
+              "name": "Post registrations - 400 (400)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r",
+                      "  pm.response.to.have.status(400);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/registrations/400",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations",
+                    "400"
+                  ]
+                },
+                "description": "Registra un nuevo registro en el sistema"
+              },
+              "response": []
+            },
+            {
+              "name": "Post registrations - 404 (404)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 404\", function () {\r",
+                      "  pm.response.to.have.status(404);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/registrations/404",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations",
+                    "404"
+                  ]
+                },
+                "description": "Registra un nuevo registro en el sistema"
+              },
+              "response": []
+            },
+            {
+              "name": "Post registrations - 500 (500)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 500\", function () {\r",
+                      "  pm.response.to.have.status(500);\r",
+                      "});\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/registrations/500",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations",
+                    "500"
+                  ]
+                },
+                "description": "Registra un nuevo registro en el sistema"
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://enajenarte.com"
+    }
+  ]
+}
