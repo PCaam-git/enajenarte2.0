@@ -1,0 +1,4714 @@
+{
+  "info": {
+    "_postman_id": "8bc367ae-a527-46f9-960b-62721f7af6c1",
+    "name": "Enajenarte RUNNER (8080)",
+    "description": "API para la empresa Enajenarte",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48848621",
+    "_collection_link": "https://go.postman.co/collection/48848621-8bc367ae-a527-46f9-960b-62721f7af6c1?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Obtener usuario por ID",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                },
+                "description": "Devuelve un usuario específico por su ID"
+              },
+              "response": [
+                {
+                  "name": "Usuario encontrado",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"username\": \"patricia\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia User\",\n  \"role\": \"user\"\n}"
+                },
+                {
+                  "name": "User not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Modificar usuario",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"patricia\",\n  \"password\": \"password123\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia User\",\n  \"age\": 25\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "8445"
+                    }
+                  ]
+                },
+                "description": "Actualiza un usuario existente"
+              },
+              "response": [
+                {
+                  "name": "Usuario actualizado exitosamente",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"patricia\",\n  \"password\": \"newpassword\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia Updated\",\n  \"age\": 25\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"username\": \"patricia\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia Updated\",\n  \"role\": \"user\"\n}"
+                },
+                {
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"patricia\",\n  \"password\": \"newpassword\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia Updated\",\n  \"age\": 25\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Validation error\",\n  \"title\": \"bad-request\"\n}"
+                },
+                {
+                  "name": "User not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"patricia\",\n  \"password\": \"newpassword\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia Updated\",\n  \"age\": 25\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"patricia\",\n  \"password\": \"newpassword\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia Updated\",\n  \"age\": 25\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Eliminar usuario",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "8445"
+                    }
+                  ]
+                },
+                "description": "Elimina un usuario del sistema"
+              },
+              "response": [
+                {
+                  "name": "Usuario eliminado exitosamente",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{}"
+                },
+                {
+                  "name": "User not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Obtener todos los usuarios",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users?username=string&email=string&active=string",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "description": "Filtrar por nombre de usuario",
+                  "key": "username",
+                  "value": "string"
+                },
+                {
+                  "description": "Filtrar por email",
+                  "key": "email",
+                  "value": "string"
+                },
+                {
+                  "description": "Filtrar por estado activo",
+                  "key": "active",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Devuelve una lista de usuarios con opciones de filtrado"
+          },
+          "response": [
+            {
+              "name": "OK. Lista de usuarios obtenida exitosamente",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users?username=string&email=string&active=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filtrar por nombre de usuario",
+                      "key": "username",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por email",
+                      "key": "email",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por estado activo",
+                      "key": "active",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": 1,\n    \"username\": \"patricia\",\n    \"email\": \"patricia@mail.com\",\n    \"fullName\": \"Patricia User\",\n    \"role\": \"user\"\n  }\n]"
+            },
+            {
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users?username=string&email=string&active=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filtrar por nombre de usuario",
+                      "key": "username",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por email",
+                      "key": "email",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por estado activo",
+                      "key": "active",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Crear un nuevo usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"patricia\",\n  \"password\": \"password123\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia User\",\n  \"age\": 25\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "description": "Registra un nuevo usuario en el sistema"
+          },
+          "response": [
+            {
+              "name": "Usuario creado exitosamente",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"Patricia\",\n  \"password\": \"patricia123\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia User\",\n  \"age\": 25\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": 10,\n  \"username\": \"patricia\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia User\",\n  \"role\": \"user\"\n}"
+            },
+            {
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"Patricia\",\n  \"password\": \"patricia123\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia User\",\n  \"age\": 25\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Validation error\",\n  \"title\": \"bad-request\"\n}"
+            },
+            {
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"Patricia\",\n  \"password\": \"patricia123\",\n  \"email\": \"patricia@mail.com\",\n  \"fullName\": \"Patricia User\",\n  \"age\": 25\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Obtener evento por ID",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "8445"
+                    }
+                  ]
+                },
+                "description": "Devuelve un evento específico por su ID"
+              },
+              "response": [
+                {
+                  "name": "Evento encontrado",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"title\": \"Beneficios del mindfulness\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"entryFee\": 22.5,\n  \"isPublic\": false,\n  \"speakerId\": 1\n}"
+                },
+                {
+                  "name": "Event not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Modificar evento",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Mindfulness Workshop\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"isPublic\": true,\n  \"entryFee\": 20.5,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "8445"
+                    }
+                  ]
+                },
+                "description": "Actualiza un evento existente"
+              },
+              "response": [
+                {
+                  "name": "Evento actualizado exitosamente",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Beneficios del mindfulness actualizado\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"entryFee\": 22.5,\n  \"isPublic\": false,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"title\": \"Beneficios del mindfulness actualizado\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-03-01T10:00:00\",\n  \"entryFee\": 25,\n  \"isPublic\": false,\n  \"speakerId\": 1\n}"
+                },
+                {
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Beneficios del mindfulness actualizado\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"entryFee\": 22.5,\n  \"isPublic\": false,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Validation error\",\n  \"title\": \"bad-request\"\n}"
+                },
+                {
+                  "name": "Event not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Beneficios del mindfulness actualizado\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"entryFee\": 22.5,\n  \"isPublic\": false,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Beneficios del mindfulness actualizado\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"entryFee\": 22.5,\n  \"isPublic\": false,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Eliminar evento",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "8445"
+                    }
+                  ]
+                },
+                "description": "Elimina un evento del sistema"
+              },
+              "response": [
+                {
+                  "name": "Evento eliminado exitosamente",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{}"
+                },
+                {
+                  "name": "Event not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Obtener todos los eventos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/events?title=string&location=string&isPublic=string",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events"
+              ],
+              "query": [
+                {
+                  "description": "Filtrar por título",
+                  "key": "title",
+                  "value": "string"
+                },
+                {
+                  "description": "Filtrar por ubicación",
+                  "key": "location",
+                  "value": "string"
+                },
+                {
+                  "description": "Filtrar por asistencia pública",
+                  "key": "isPublic",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Devuelve una lista de eventos con opciones de filtrado"
+          },
+          "response": [
+            {
+              "name": "Lista de eventos obtenida exitosamente",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?title=string&location=string&isPublic=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filtrar por título",
+                      "key": "title",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por ubicación",
+                      "key": "location",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por asistencia pública",
+                      "key": "isPublic",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": 1,\n    \"title\": \"Beneficios del mindfulness\",\n    \"location\": \"Zaragoza\",\n    \"eventDate\": \"2026-02-01T10:00:00\",\n    \"entryFee\": 22.5,\n    \"isPublic\": false,\n    \"speakerId\": 1\n  }\n]"
+            },
+            {
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events?title=string&location=string&isPublic=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filtrar por título",
+                      "key": "title",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por ubicación",
+                      "key": "location",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por asistencia pública",
+                      "key": "isPublic",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Crear un nuevo evento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Mindfulness Workshop\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"isPublic\": true,\n  \"entryFee\": 20.5,\n  \"speakerId\": 1\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events"
+              ]
+            },
+            "description": "Registra un nuevo evento en el sistema"
+          },
+          "response": [
+            {
+              "name": "Evento creado exitosamente",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Beneficios del mindfulness\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"entryFee\": 22.5,\n  \"isPublic\": false,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": 1,\n  \"title\": \"Beneficios del mindfulness\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"entryFee\": 22.5,\n  \"isPublic\": false,\n  \"speakerId\": 1\n}"
+            },
+            {
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Beneficios del mindfulness\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"entryFee\": 22.5,\n  \"isPublic\": false,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Validation error\",\n  \"title\": \"bad-request\"\n}"
+            },
+            {
+              "name": "Speaker not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Beneficios del mindfulness\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"entryFee\": 22.5,\n  \"isPublic\": false,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+            },
+            {
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Beneficios del mindfulness\",\n  \"location\": \"Zaragoza\",\n  \"eventDate\": \"2026-02-01T10:00:00\",\n  \"expectedAttendance\": 40,\n  \"entryFee\": 22.5,\n  \"isPublic\": false,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "speakers",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Obtener ponente por ID",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/speakers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "8445"
+                    }
+                  ]
+                },
+                "description": "Devuelve un ponente específico por su ID"
+              },
+              "response": [
+                {
+                  "name": "Ponente encontrado",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5\n}"
+                },
+                {
+                  "name": "Speaker not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Modificar ponente",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Ana\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"ana@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2025-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/speakers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "8445"
+                    }
+                  ]
+                },
+                "description": "Actualiza un ponente existente"
+              },
+              "response": [
+                {
+                  "name": "Ponente actualizado exitosamente",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness avanzado\",\n  \"yearsExperience\": 6,\n  \"workshopHoursTotal\": 15,\n  \"available\": true,\n  \"joinDate\": \"2025-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness avanzado\",\n  \"yearsExperience\": 6\n}"
+                },
+                {
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness avanzado\",\n  \"yearsExperience\": 6,\n  \"workshopHoursTotal\": 15,\n  \"available\": true,\n  \"joinDate\": \"2025-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Validation error\",\n  \"title\": \"bad-request\"\n}"
+                },
+                {
+                  "name": "Speaker not found / Workshop not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness avanzado\",\n  \"yearsExperience\": 6,\n  \"workshopHoursTotal\": 15,\n  \"available\": true,\n  \"joinDate\": \"2025-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness avanzado\",\n  \"yearsExperience\": 6,\n  \"workshopHoursTotal\": 15,\n  \"available\": true,\n  \"joinDate\": \"2025-01-01\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Eliminar ponente",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/speakers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "8445"
+                    }
+                  ]
+                },
+                "description": "Elimina un ponente del sistema"
+              },
+              "response": [
+                {
+                  "name": "Ponente eliminado exitosamente",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{}"
+                },
+                {
+                  "name": "Speaker not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/speakers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "speakers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Obtener todos los ponentes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/speakers?speciality=string&available=string&yearsExperience=string",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "speakers"
+              ],
+              "query": [
+                {
+                  "description": "Filtrar por especialidad",
+                  "key": "speciality",
+                  "value": "string"
+                },
+                {
+                  "description": "Filtrar por disponibilidad",
+                  "key": "available",
+                  "value": "string"
+                },
+                {
+                  "description": "Filtrar por años de experiencia",
+                  "key": "yearsExperience",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Devuelve una lista de ponentes con opciones de filtrado"
+          },
+          "response": [
+            {
+              "name": "Lista de ponentes obtenida exitosamente",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/speakers?speciality=string&available=string&yearsExperience=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filtrar por especialidad",
+                      "key": "speciality",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por disponibilidad",
+                      "key": "available",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por años de experiencia",
+                      "key": "yearsExperience",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": 1,\n    \"firstName\": \"Cristina\",\n    \"lastName\": \"Lopez\",\n    \"email\": \"cristina@mail.com\",\n    \"speciality\": \"mindfulness\",\n    \"yearsExperience\": 5\n  }\n]"
+            },
+            {
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/speakers?speciality=string&available=string&yearsExperience=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filtrar por especialidad",
+                      "key": "speciality",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por disponibilidad",
+                      "key": "available",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por años de experiencia",
+                      "key": "yearsExperience",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Crear un nuevo ponente",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Ana\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"ana@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2025-01-01\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/speakers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "speakers"
+              ]
+            },
+            "description": "Registra un nuevo ponente en el sistema"
+          },
+          "response": [
+            {
+              "name": "Ponente creado exitosamente",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/speakers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": 1,\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5\n}"
+            },
+            {
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/speakers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Validation error\",\n  \"title\": \"bad-request\"\n}"
+            },
+            {
+              "name": "Workshop not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/speakers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+            },
+            {
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Cristina\",\n  \"lastName\": \"Lopez\",\n  \"email\": \"cristina@mail.com\",\n  \"speciality\": \"mindfulness\",\n  \"yearsExperience\": 5,\n  \"workshopHoursTotal\": 10,\n  \"available\": true,\n  \"joinDate\": \"2024-01-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/speakers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "speakers"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "workshops",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Obtener taller por ID",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workshops/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "8445"
+                    }
+                  ]
+                },
+                "description": "Devuelve un taller específico por su ID"
+              },
+              "response": [
+                {
+                  "name": "Taller encontrado",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}"
+                },
+                {
+                  "name": "Workshop not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Modificar taller",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workshops/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "8445"
+                    }
+                  ]
+                },
+                "description": "Actualiza un taller existente"
+              },
+              "response": [
+                {
+                  "name": "Taller actualizado exitosamente",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Oratoria básica actualizada\",\n  \"description\": \"Taller de oratoria y comunicación actualizada\",\n  \"startDate\": \"2026-02-18\",\n  \"durationMinutes\": 120,\n  \"price\": 25,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"name\": \"Oratoria básica actualizada\",\n  \"description\": \"Taller de oratoria y comunicación actualizada\",\n  \"startDate\": \"2026-02-18\",\n  \"durationMinutes\": 120,\n  \"price\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}"
+                },
+                {
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Oratoria básica actualizada\",\n  \"description\": \"Taller de oratoria y comunicación actualizada\",\n  \"startDate\": \"2026-02-18\",\n  \"durationMinutes\": 120,\n  \"price\": 25,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Validation error\",\n  \"title\": \"bad-request\"\n}"
+                },
+                {
+                  "name": "Workshop not found / Speaker not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Oratoria básica actualizada\",\n  \"description\": \"Taller de oratoria y comunicación actualizada\",\n  \"startDate\": \"2026-02-18\",\n  \"durationMinutes\": 120,\n  \"price\": 25,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"Oratoria básica actualizada\",\n  \"description\": \"Taller de oratoria y comunicación actualizada\",\n  \"startDate\": \"2026-02-18\",\n  \"durationMinutes\": 120,\n  \"price\": 25,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Eliminar taller",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workshops/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "8445"
+                    }
+                  ]
+                },
+                "description": "Elimina un taller del sistema"
+              },
+              "response": [
+                {
+                  "name": "Taller eliminado exitosamente",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{}"
+                },
+                {
+                  "name": "Workshop not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workshops/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workshops",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Obtener todos los talleres",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/workshops?name=string&isOnline=string&speakerId=string",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "workshops"
+              ],
+              "query": [
+                {
+                  "description": "Filtrar por nombre (contiene)",
+                  "key": "name",
+                  "value": "string"
+                },
+                {
+                  "description": "Filtrar por modalidad online",
+                  "key": "isOnline",
+                  "value": "string"
+                },
+                {
+                  "description": "Filtrar por ID del ponente",
+                  "key": "speakerId",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Devuelve una lista de talleres con opciones de filtrado"
+          },
+          "response": [
+            {
+              "name": "Lista de talleres obtenida exitosamente",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workshops?name=string&isOnline=string&speakerId=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filtrar por nombre (contiene)",
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por modalidad online",
+                      "key": "isOnline",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por ID del ponente",
+                      "key": "speakerId",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Oratoria básica\",\n    \"description\": \"Taller de oratoria y comunicación\",\n    \"startDate\": \"2026-02-10\",\n    \"durationMinutes\": 90,\n    \"price\": 20,\n    \"isOnline\": true,\n    \"speakerId\": 1\n  }\n]"
+            },
+            {
+              "name": "Speaker not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workshops?name=string&isOnline=string&speakerId=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filtrar por nombre (contiene)",
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por modalidad online",
+                      "key": "isOnline",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por ID del ponente",
+                      "key": "speakerId",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+            },
+            {
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workshops?name=string&isOnline=string&speakerId=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filtrar por nombre (contiene)",
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por modalidad online",
+                      "key": "isOnline",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por ID del ponente",
+                      "key": "speakerId",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Crear un nuevo taller",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/workshops",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "workshops"
+              ]
+            },
+            "description": "Registra un nuevo taller en el sistema"
+          },
+          "response": [
+            {
+              "name": "Taller creado exitosamente",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workshops",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}"
+            },
+            {
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workshops",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Validation error\",\n  \"title\": \"bad-request\"\n}"
+            },
+            {
+              "name": "Speaker not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workshops",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+            },
+            {
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Oratoria básica\",\n  \"description\": \"Taller de oratoria y comunicación\",\n  \"startDate\": \"2026-02-10\",\n  \"durationMinutes\": 90,\n  \"price\": 20,\n  \"maxCapacity\": 25,\n  \"isOnline\": true,\n  \"speakerId\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workshops",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workshops"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "registrations",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Obtener registro por ID",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/registrations/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "8445"
+                    }
+                  ]
+                },
+                "description": "Devuelve un registro específico por su ID"
+              },
+              "response": [
+                {
+                  "name": "Registro encontrado",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"registrationDate\": \"2026-01-10\",\n  \"isPaid\": false,\n  \"numberOfTickets\": 2,\n  \"amountPaid\": 0,\n  \"rating\": 5,\n  \"userId\": 1,\n  \"workshopId\": 10\n}"
+                },
+                {
+                  "name": "Registration not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Modificar registro",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/registrations/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "8445"
+                    }
+                  ]
+                },
+                "description": "Actualiza un registro existente"
+              },
+              "response": [
+                {
+                  "name": "Registro actualizado exitosamente",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"numberOfTickets\": 3,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": 1,\n  \"registrationDate\": \"2026-01-10\",\n  \"isPaid\": true,\n  \"numberOfTickets\": 3,\n  \"amountPaid\": 30,\n  \"rating\": 5,\n  \"userId\": 1,\n  \"workshopId\": 10\n}"
+                },
+                {
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"numberOfTickets\": 3,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 400,\n  \"message\": \"Validation error\",\n  \"title\": \"bad-request\"\n}"
+                },
+                {
+                  "name": "Registration not found / User not found / Workshop not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"numberOfTickets\": 3,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"numberOfTickets\": 3,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "Eliminar registro",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/registrations/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "8445"
+                    }
+                  ]
+                },
+                "description": "Elimina un registro del sistema"
+              },
+              "response": [
+                {
+                  "name": "Registro eliminado exitosamente",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{}"
+                },
+                {
+                  "name": "Registration not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "8445"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Obtener todos los registros",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/registrations?userId=string&workshopId=string&isPaid=string",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "registrations"
+              ],
+              "query": [
+                {
+                  "description": "Filtrar por ID del usuario",
+                  "key": "userId",
+                  "value": "string"
+                },
+                {
+                  "description": "Filtrar por ID del taller",
+                  "key": "workshopId",
+                  "value": "string"
+                },
+                {
+                  "description": "Filtrar por estado de pago",
+                  "key": "isPaid",
+                  "value": "string"
+                }
+              ]
+            },
+            "description": "Devuelve una lista de registros con opciones de filtrado"
+          },
+          "response": [
+            {
+              "name": "Lista de registros obtenida exitosamente",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/registrations?userId=string&workshopId=string&isPaid=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filtrar por ID del usuario",
+                      "key": "userId",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por ID del taller",
+                      "key": "workshopId",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por estado de pago",
+                      "key": "isPaid",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"id\": 1,\n    \"registrationDate\": \"2026-01-10\",\n    \"isPaid\": false,\n    \"numberOfTickets\": 2,\n    \"amountPaid\": 0,\n    \"rating\": 5,\n    \"userId\": 1,\n    \"workshopId\": 10\n  }\n]"
+            },
+            {
+              "name": "User not found/ Workshop not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/registrations?userId=string&workshopId=string&isPaid=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filtrar por ID del usuario",
+                      "key": "userId",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por ID del taller",
+                      "key": "workshopId",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por estado de pago",
+                      "key": "isPaid",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+            },
+            {
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/registrations?userId=string&workshopId=string&isPaid=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filtrar por ID del usuario",
+                      "key": "userId",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por ID del taller",
+                      "key": "workshopId",
+                      "value": "string"
+                    },
+                    {
+                      "description": "Filtrar por estado de pago",
+                      "key": "isPaid",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Crear un nuevo registro",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/registrations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "registrations"
+              ]
+            },
+            "description": "Registra un nuevo registro en el sistema"
+          },
+          "response": [
+            {
+              "name": "Registro creado exitosamente",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/registrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}"
+            },
+            {
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/registrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Validation error\",\n  \"title\": \"bad-request\"\n}"
+            },
+            {
+              "name": "User or Workshop not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/registrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"Resource not found\",\n  \"title\": \"not-found\"\n}"
+            },
+            {
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numberOfTickets\": 2,\n  \"userId\": 1,\n  \"workshopId\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/registrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal server error\",\n  \"title\": \"internal-server-error\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://enajenarte.com"
+    }
+  ]
+}
