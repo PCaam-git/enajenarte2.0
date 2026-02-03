@@ -45,7 +45,7 @@ public class RegistrationService {
         registration.setUser(user);
         registration.setWorkshop(workshop);
 
-        //Sistema
+        //Aquí se establecen los datos de sistema
         registration.setRegistrationDate(LocalDate.now());
         registration.setConfirmationCode(UUID.randomUUID().toString());
         registration.setPaid(false);
@@ -53,7 +53,12 @@ public class RegistrationService {
         registration.setRating(null);
 
         Registration newRegistration = registrationRepository.save(registration);
-        return modelMapper.map(newRegistration, RegistrationOutDto.class);
+
+        RegistrationOutDto registrationOutDto = modelMapper.map(newRegistration, RegistrationOutDto.class);
+        registrationOutDto.setUserId(newRegistration.getUser().getId());
+        registrationOutDto.setWorkshopId(newRegistration.getWorkshop().getId());
+
+        return registrationOutDto;
     }
 
     public void delete(long id) throws RegistrationNotFoundException {
