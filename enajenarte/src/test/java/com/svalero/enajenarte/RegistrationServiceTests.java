@@ -48,13 +48,13 @@ public class RegistrationServiceTests {
     @Test
     public void testFindAll() throws Exception {
         List<Registration> mockRegistrationList = List.of(
-                new Registration(1L, LocalDate.of(2026, 1, 1), "CONF-1", false, 1, 0, null, null, null),
-                new Registration(2L, LocalDate.of(2026, 1, 2), "CONF-2", true, 2, 20, 5, null, null)
+                new Registration(1L, LocalDate.of(2026, 1, 1), "CONF-1", false, 1, 0f, null, null, null),
+                new Registration(2L, LocalDate.of(2026, 1, 2), "CONF-2", true, 2, 20f, 5, null, null)
         );
 
         List<RegistrationOutDto> modelMapperRegistrationOutDtoList = List.of(
-                new RegistrationOutDto(1L, LocalDate.of(2026, 1, 1), false, 1, 0, 0, 0L, 0L),
-                new RegistrationOutDto(2L, LocalDate.of(2026, 1, 2), true, 2, 20, 5, 0L, 0L)
+                new RegistrationOutDto(1L, LocalDate.of(2026, 1, 1), "CONF-1", false, 1, 0, 0, 0L, 0L),
+                new RegistrationOutDto(2L, LocalDate.of(2026, 1, 2), "CONF-2", true, 2, 20, 5, 0L, 0L)
         );
 
         when(registrationRepository.findAll()).thenReturn(mockRegistrationList);
@@ -76,8 +76,8 @@ public class RegistrationServiceTests {
         );
 
         List<RegistrationOutDto> modelMapperRegistrationOutDtoList = List.of(
-                new RegistrationOutDto(1L, LocalDate.of(2026, 1, 2), true, 2, 20, 5, 0L, 0L),
-                new RegistrationOutDto(2L, LocalDate.of(2026, 1, 3), true, 1, 10, 4, 0L, 0L)
+                new RegistrationOutDto(1L, LocalDate.of(2026, 1, 2), "CONF-2",true, 2, 20, 5, 0L, 0L),
+                new RegistrationOutDto(2L, LocalDate.of(2026, 1, 3), "CONF-3", true, 1, 10, 4, 0L, 0L)
         );
 
         when(registrationRepository.findByIsPaid(true)).thenReturn(registrationList);
@@ -104,8 +104,8 @@ public class RegistrationServiceTests {
         );
 
         List<RegistrationOutDto> modelMapperRegistrationOutDtoList = List.of(
-                new RegistrationOutDto(1L, LocalDate.of(2026, 1, 10), false, 2, 0, 0, 1L, 10L),
-                new RegistrationOutDto(2L, LocalDate.of(2026, 1, 11), true, 1, 20, 5, 1L, 10L)
+                new RegistrationOutDto(1L, LocalDate.of(2026, 1, 10), "CONF-10", false, 2, 0, 0, 1L, 10L),
+                new RegistrationOutDto(2L, LocalDate.of(2026, 1, 11), "CONF-11", true, 1, 20, 5, 1L, 10L)
         );
 
         when(userRepository.findById(1L)).thenReturn(Optional.of(userRepositoryUser));
@@ -141,8 +141,8 @@ public class RegistrationServiceTests {
         );
 
         List<RegistrationOutDto> modelMapperRegistrationOutDtoList = List.of(
-                new RegistrationOutDto(1L, LocalDate.of(2026, 1, 10), false, 2, 0, 0, 1L, 10L),
-                new RegistrationOutDto(2L, LocalDate.of(2026, 1, 11), true, 1, 20, 5, 2L, 10L)
+                new RegistrationOutDto(1L, LocalDate.of(2026, 1, 10), "CONF-10",  false, 2, 0, 0, 1L, 10L),
+                new RegistrationOutDto(2L, LocalDate.of(2026, 1, 11), "CONF-11", true, 1, 20, 5, 2L, 10L)
         );
 
         when(workshopRepository.findById(10L)).thenReturn(Optional.of(workshopRepositoryWorkshop));
@@ -171,6 +171,14 @@ public class RegistrationServiceTests {
     public void testFindById() throws Exception {
         Registration registrationRepositoryRegistration = new Registration();
         registrationRepositoryRegistration.setId(7L);
+
+        User user = new User();
+        user.setId(1L);
+        Workshop workshop = new Workshop();
+        workshop.setId(10L);
+
+        registrationRepositoryRegistration.setUser(user);
+        registrationRepositoryRegistration.setWorkshop(workshop);
 
         RegistrationOutDto modelMapperRegistrationOutDto = new RegistrationOutDto();
         modelMapperRegistrationOutDto.setId(7L);
@@ -206,6 +214,8 @@ public class RegistrationServiceTests {
         Registration modelMapperRegistration = new Registration();
         Registration registrationRepositorySavedRegistration = new Registration();
         registrationRepositorySavedRegistration.setId(100L);
+        registrationRepositorySavedRegistration.setUser(userRepositoryUser);
+        registrationRepositorySavedRegistration.setWorkshop(workshopRepositoryWorkshop);
 
         RegistrationOutDto modelMapperRegistrationOutDto = new RegistrationOutDto();
         modelMapperRegistrationOutDto.setId(100L);
@@ -300,6 +310,8 @@ public class RegistrationServiceTests {
 
         Registration savedRegistration = new Registration();
         savedRegistration.setId(registrationId);
+        savedRegistration.setUser(userRepositoryUser); // asigna el usuario
+        savedRegistration.setWorkshop(workshopRepositoryWorkshop); // asigna el taller
 
         RegistrationOutDto modelMapperRegistrationOutDto = new RegistrationOutDto();
         modelMapperRegistrationOutDto.setId(registrationId);

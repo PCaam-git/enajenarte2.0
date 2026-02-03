@@ -46,8 +46,8 @@ public class RegistrationControllerTests {
     @Test
     public void testGetAll() throws Exception {
         List<RegistrationOutDto> registrationOutDtoList = List.of(
-                new RegistrationOutDto(1L, LocalDate.of(2026, 1, 10), false, 2, 0, 0, 1L, 10L),
-                new RegistrationOutDto(2L, LocalDate.of(2026, 1, 11), true, 1, 20, 5, 2L, 10L)
+                new RegistrationOutDto(1L, LocalDate.of(2026, 1, 10), "CONF-1", false, 2, 0, 0, 1L, 10L),
+                new RegistrationOutDto(2L, LocalDate.of(2026, 1, 11),"CONF-2", true, 1, 20, 5, 2L, 10L)
         );
 
         when(registrationService.findAll("", "", "")).thenReturn(registrationOutDtoList);
@@ -71,8 +71,8 @@ public class RegistrationControllerTests {
     @Test
     public void testGetAllByUserId() throws Exception {
         List<RegistrationOutDto> registrationOutDtoList = List.of(
-                new RegistrationOutDto(1L, LocalDate.of(2026, 1, 10), false, 2, 0, 0, 1L, 10L),
-                new RegistrationOutDto(3L, LocalDate.of(2026, 1, 12), true, 1, 20, 4, 1L, 11L)
+                new RegistrationOutDto(1L, LocalDate.of(2026, 1, 10), "CONF-1",false, 2, 0, 0, 1L, 10L),
+                new RegistrationOutDto(3L, LocalDate.of(2026, 1, 12),"CONF-3", true, 1, 20, 4, 1L, 11L)
         );
 
         when(registrationService.findAll("1", "", "")).thenReturn(registrationOutDtoList);
@@ -97,8 +97,8 @@ public class RegistrationControllerTests {
     @Test
     public void testGetAllByWorkshopId() throws Exception {
         List<RegistrationOutDto> registrationOutDtoList = List.of(
-                new RegistrationOutDto(1L, LocalDate.of(2026, 1, 10), false, 2, 0, 0, 1L, 10L),
-                new RegistrationOutDto(2L, LocalDate.of(2026, 1, 11), true, 1, 20, 5, 2L, 10L)
+                new RegistrationOutDto(1L, LocalDate.of(2026, 1, 10), "CONF-1", false, 2, 0, 0, 1L, 10L),
+                new RegistrationOutDto(2L, LocalDate.of(2026, 1, 11), "CONF-3", true, 1, 20, 5, 2L, 10L)
         );
 
         when(registrationService.findAll("10", "", "")).thenReturn(registrationOutDtoList);
@@ -114,7 +114,7 @@ public class RegistrationControllerTests {
     @Test
     public void testGetAllByIsPaid() throws Exception {
         List<RegistrationOutDto> registrationOutDtoList = List.of(
-                new RegistrationOutDto(2L, LocalDate.of(2026, 1, 11), true, 1, 20, 5, 2L, 10L)
+                new RegistrationOutDto(2L, LocalDate.of(2026, 1, 11), "CONF-3", true, 1, 20, 5, 2L, 10L)
         );
 
         when(registrationService.findAll("", "", "true")).thenReturn(registrationOutDtoList);
@@ -130,7 +130,7 @@ public class RegistrationControllerTests {
     @Test
     public void testGetById() throws Exception {
         RegistrationOutDto registrationOutDto =
-                new RegistrationOutDto(7L, LocalDate.of(2026, 1, 10), false, 2, 0, 0, 1L, 10L);
+                new RegistrationOutDto(7L, LocalDate.of(2026, 1, 10),"CONF-7",  false, 2, 0, 0, 1L, 10L);
 
         when(registrationService.findById(7L)).thenReturn(registrationOutDto);
 
@@ -157,7 +157,7 @@ public class RegistrationControllerTests {
         RegistrationInDto registrationInDto = new RegistrationInDto(2, 1L, 10L);
 
         RegistrationOutDto registrationOutDto =
-                new RegistrationOutDto(100L, LocalDate.of(2026, 1, 10), false, 2, 0, 0, 1L, 10L);
+                new RegistrationOutDto(100L, LocalDate.of(2026, 1, 10),"CONF-10",  false, 2, 0, 0, 1L, 10L);
 
         when(registrationService.add(any(RegistrationInDto.class))).thenReturn(registrationOutDto);
 
@@ -225,7 +225,7 @@ public class RegistrationControllerTests {
         RegistrationInDto registrationInDto = new RegistrationInDto(3, 1L, 10L);
 
         RegistrationOutDto registrationOutDto =
-                new RegistrationOutDto(5L, LocalDate.of(2026, 1, 10), false, 3, 0, 0, 1L, 10L);
+                new RegistrationOutDto(5L, LocalDate.of(2026, 1, 10),"CONF-10", false, 3, 0, 0, 1L, 10L);
 
         when(registrationService.modify(5L, registrationInDto)).thenReturn(registrationOutDto);
 
