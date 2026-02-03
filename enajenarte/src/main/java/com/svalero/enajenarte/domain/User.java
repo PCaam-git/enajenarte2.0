@@ -40,9 +40,6 @@ public class User {
     @NotNull(message = "fullName is mandatory")
     private String fullName;
 
-    @Column(name = "registration_date")
-    private LocalDate registrationDate;
-
     @Column
     @Min(value = 12, message = "age must be at least 12")
     @Max(value = 120, message = "age must be realistic")
