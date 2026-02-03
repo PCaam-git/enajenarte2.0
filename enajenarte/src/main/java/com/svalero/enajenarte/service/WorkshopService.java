@@ -8,7 +8,6 @@ import com.svalero.enajenarte.exception.SpeakerNotFoundException;
 import com.svalero.enajenarte.exception.WorkshopNotFoundException;
 import com.svalero.enajenarte.repository.SpeakerRepository;
 import com.svalero.enajenarte.repository.WorkshopRepository;
-import org.hibernate.jdbc.Work;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +25,7 @@ public class WorkshopService {
     @Autowired
     private ModelMapper modelMapper;
 
+    // POST
     public WorkshopOutDto add(WorkshopInDto workshopInDto) throws SpeakerNotFoundException {
         Speaker speaker = speakerRepository.findById(workshopInDto.getSpeakerId())
                 .orElseThrow(SpeakerNotFoundException::new);
@@ -34,9 +34,17 @@ public class WorkshopService {
         workshop.setSpeaker(speaker);
 
         Workshop newWorkshop = workshopRepository.save(workshop);
-        return modelMapper.map(newWorkshop, WorkshopOutDto.class);
+
+        // Modificación aplicada: Mapear -> Setear IDs -> Devolver. Evita que speakerId salga a 0
+        WorkshopOutDto workshopOutDto = modelMapper.map(newWorkshop, WorkshopOutDto.class);
+        if (newWorkshop.getSpeaker() != null) {
+            workshopOutDto.setSpeakerId(newWorkshop.getSpeaker().getId());
+        }
+
+        return workshopOutDto;
     }
 
+    // DELETE
     public void delete(long id) throws WorkshopNotFoundException {
         Workshop workshop = workshopRepository.findById(id)
                 .orElseThrow(WorkshopNotFoundException::new);
@@ -44,6 +52,7 @@ public class WorkshopService {
         workshopRepository.delete(workshop);
     }
 
+    // GET ALL (con filtros)
     public List<WorkshopOutDto> findAll(String name, String isOnline, String speakerId) throws SpeakerNotFoundException {
         List<Workshop> workshops;
 
@@ -60,15 +69,36 @@ public class WorkshopService {
         } else {
             workshops = workshopRepository.findAll();
         }
-        return modelMapper.map(workshops, new TypeToken<List<WorkshopOutDto>>() {}.getType());
+
+        List<WorkshopOutDto> workshopOutDtoList =
+                modelMapper.map(workshops, new TypeToken<List<WorkshopOutDto>>() {}.getType());
+
+        // Modificación aplicada: Mapear -> Setear IDs -> Devolver. Evita que speakerId salga a 0
+        for (int i = 0; i < workshops.size(); i++) {
+            if (workshops.get(i).getSpeaker() != null) {
+                workshopOutDtoList.get(i).setSpeakerId(workshops.get(i).getSpeaker().getId());
+            }
+        }
+
+        return workshopOutDtoList;
     }
 
+    // GET by id
     public WorkshopOutDto findById(long id) throws WorkshopNotFoundException {
         Workshop workshop = workshopRepository.findById(id)
                 .orElseThrow(WorkshopNotFoundException::new);
-        return modelMapper.map(workshop, WorkshopOutDto.class);
+
+        WorkshopOutDto workshopOutDto = modelMapper.map(workshop, WorkshopOutDto.class);
+
+        // Modificación aplicada: Mapear -> Setear IDs -> Devolver. Evita que speakerId salga a 0
+        if (workshop.getSpeaker() != null) {
+            workshopOutDto.setSpeakerId(workshop.getSpeaker().getId());
+        }
+
+        return workshopOutDto;
     }
 
+    // PUT
     public WorkshopOutDto modify(long id, WorkshopInDto workshopInDto) throws WorkshopNotFoundException, SpeakerNotFoundException {
         Workshop existingWorkshop = workshopRepository.findById(id)
                 .orElseThrow(WorkshopNotFoundException::new);
@@ -79,7 +109,14 @@ public class WorkshopService {
         existingWorkshop.setId(id);
         existingWorkshop.setSpeaker(speaker);
 
-        Workshop updateWorkshop = workshopRepository.save(existingWorkshop);
-        return modelMapper.map(updateWorkshop, WorkshopOutDto.class);
+        Workshop updatedWorkshop = workshopRepository.save(existingWorkshop);
+        WorkshopOutDto updatedWorkshopOutDto = modelMapper.map(updatedWorkshop, WorkshopOutDto.class);
+
+        // Modificación aplicada: Mapear -> Setear IDs -> Devolver. Evita que speakerId salga a 0
+        if (updatedWorkshop.getSpeaker() != null) {
+            updatedWorkshopOutDto.setSpeakerId(updatedWorkshop.getSpeaker().getId());
+        }
+
+        return updatedWorkshopOutDto;
     }
 }

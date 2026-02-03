@@ -35,7 +35,14 @@ public class EventService {
         event.setSpeaker(speaker);
 
         Event newEvent = eventRepository.save(event);
-        return modelMapper.map(newEvent, EventOutDto.class);
+
+        // Modificación aplicada: Mapear -> Setear IDs -> Devolver. Evita que speakerId salga a 0
+        EventOutDto eventOutDto = modelMapper.map(newEvent, EventOutDto.class);
+        if (newEvent.getSpeaker() != null) {
+            eventOutDto.setSpeakerId(newEvent.getSpeaker().getId());
+        }
+
+        return eventOutDto;
     }
 
     // DELETE
@@ -46,6 +53,7 @@ public class EventService {
         eventRepository.delete(event);
     }
 
+    // GET ALL (con filtros)
     public List<EventOutDto> findAll(String title, String location, String isPublic) {
         List<Event> events;
 
@@ -59,16 +67,36 @@ public class EventService {
         } else {
             events = eventRepository.findAll();
         }
-        return modelMapper.map(events, new TypeToken<List<EventOutDto>>() {}.getType());
+
+        List<EventOutDto> eventOutDtoList =
+                modelMapper.map(events, new TypeToken<List<EventOutDto>>() {}.getType());
+
+        // Modificación aplicada: Mapear -> Setear IDs -> Devolver. Evita que speaker salga a 0
+        for (int i = 0; i < events.size(); i++) {
+            if (events.get(i).getSpeaker() != null) {
+                eventOutDtoList.get(i).setSpeakerId(events.get(i).getSpeaker().getId());
+            }
+        }
+
+        return eventOutDtoList;
     }
 
+    // GET BY ID
     public EventOutDto findById(long id) throws EventNotFoundException {
         Event event = eventRepository.findById(id)
                 .orElseThrow(EventNotFoundException::new);
 
-        return modelMapper.map(event, EventOutDto.class);
+        EventOutDto eventOutDto = modelMapper.map(event, EventOutDto.class);
+
+        // Evita que speakerId salga a 0
+        if (event.getSpeaker() != null) {
+            eventOutDto.setSpeakerId(event.getSpeaker().getId());
+        }
+
+        return eventOutDto;
     }
 
+    // PUT
     public EventOutDto modify(long id, EventInDto eventInDto) throws EventNotFoundException, SpeakerNotFoundException {
         Event existingEvent = eventRepository.findById(id)
                 .orElseThrow(EventNotFoundException::new);
@@ -80,7 +108,11 @@ public class EventService {
         existingEvent.setSpeaker(speaker);
 
         Event updateEvent = eventRepository.save(existingEvent);
-        return modelMapper.map(updateEvent, EventOutDto.class);
+        EventOutDto updatedEventOutDto = modelMapper.map(updateEvent, EventOutDto.class);
 
+        if (updateEvent.getSpeaker() != null) {
+            updatedEventOutDto.setSpeakerId(updateEvent.getSpeaker().getId());
+        }
+        return updatedEventOutDto;
     }
 }

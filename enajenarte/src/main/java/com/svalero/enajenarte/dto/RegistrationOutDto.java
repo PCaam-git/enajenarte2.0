@@ -13,6 +13,7 @@ import java.time.LocalDate;
 public class RegistrationOutDto {
     private long id;
     private LocalDate registrationDate;
+    private String confirmationCode;
     private boolean isPaid;
     private int numberOfTickets;
     private float amountPaid;

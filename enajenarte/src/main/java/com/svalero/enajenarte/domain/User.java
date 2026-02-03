@@ -45,8 +45,18 @@ public class User {
     @Max(value = 120, message = "age must be realistic")
     private int age;
 
+    @Column(name = "is_active")
+    private boolean active;
+
+    @Column
+    @Min(value = 0, message = "balance must be a positive number")
+    private float balance;
+
+    @Column
+    private String role;
 
     @OneToMany(mappedBy = "user")
     @JsonBackReference
     private List<Registration> registrations;
+
 }

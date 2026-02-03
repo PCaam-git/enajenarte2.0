@@ -13,3 +13,6 @@ services:
     volumes:
       - mariadb_data:/var/lib/mysql
     restart: always
+
+volumes:
+  mariadb_data:

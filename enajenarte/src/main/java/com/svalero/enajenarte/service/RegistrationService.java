@@ -34,6 +34,7 @@ public class RegistrationService {
     @Autowired
     private ModelMapper modelMapper;
 
+    // POST
     public RegistrationOutDto add(RegistrationInDto registrationInDto) throws UserNotFoundException, WorkshopNotFoundException {
         User user = userRepository.findById(registrationInDto.getUserId())
                 .orElseThrow(UserNotFoundException::new);
@@ -45,7 +46,7 @@ public class RegistrationService {
         registration.setUser(user);
         registration.setWorkshop(workshop);
 
-        //Sistema
+        //Aquí se establecen los datos de sistema
         registration.setRegistrationDate(LocalDate.now());
         registration.setConfirmationCode(UUID.randomUUID().toString());
         registration.setPaid(false);
@@ -53,15 +54,22 @@ public class RegistrationService {
         registration.setRating(null);
 
         Registration newRegistration = registrationRepository.save(registration);
-        return modelMapper.map(newRegistration, RegistrationOutDto.class);
+
+        RegistrationOutDto registrationOutDto = modelMapper.map(newRegistration, RegistrationOutDto.class);
+        registrationOutDto.setUserId(newRegistration.getUser().getId());
+        registrationOutDto.setWorkshopId(newRegistration.getWorkshop().getId());
+
+        return registrationOutDto;
     }
 
+    // DELETE
     public void delete(long id) throws RegistrationNotFoundException {
         Registration registration = registrationRepository.findById(id)
                 .orElseThrow(RegistrationNotFoundException::new);
         registrationRepository.delete(registration);
     }
 
+    // GET ALL
     public List<RegistrationOutDto> findAll(String workshopId, String userId, String isPaid) throws WorkshopNotFoundException, UserNotFoundException {
         List<Registration> registrations;
 
@@ -82,17 +90,39 @@ public class RegistrationService {
         } else {
             registrations = registrationRepository.findAll();
         }
-        return modelMapper.map(registrations, new TypeToken<List<RegistrationOutDto>>() {}.getType());
+
+        // Modificación aplicada: Mapear -> Setear IDs -> Devolver. Evita que workshopId y userId salgan a 0
+        List<RegistrationOutDto> registrationsOutDtos =
+        modelMapper.map(registrations, new TypeToken<List<RegistrationOutDto>>() {}.getType());
+
+        for (int i = 0; i < registrations.size(); i++) {
+            Registration registration = registrations.get(i);
+            RegistrationOutDto registrationOutDto = registrationsOutDtos.get(i);
+
+            if (registration.getUser() != null) {
+                registrationOutDto.setUserId(registration.getUser().getId());
+            }
+            if (registration.getWorkshop() != null) {
+                registrationOutDto.setWorkshopId(registration.getWorkshop().getId());
+            }
+        }
+                return registrationsOutDtos;
         }
 
-        public RegistrationOutDto findById(long id) throws RegistrationNotFoundException {
+        // GET BY ID
+    public RegistrationOutDto findById(long id) throws RegistrationNotFoundException {
         Registration registration = registrationRepository.findById(id)
                 .orElseThrow(RegistrationNotFoundException::new);
 
-        return modelMapper.map(registration, RegistrationOutDto.class);
-        }
+        // Modificación aplicada: Mapear -> Setear IDs -> Devolver. Evita que workshopId y userId salgan a 0
+        RegistrationOutDto registrationOutDto = modelMapper.map(registration, RegistrationOutDto.class);
+        registrationOutDto.setUserId(registration.getUser().getId());
+        registrationOutDto.setWorkshopId(registration.getWorkshop().getId());
 
-        public RegistrationOutDto modify(long id, RegistrationInDto registrationInDto) throws RegistrationNotFoundException, UserNotFoundException, WorkshopNotFoundException {
+        return registrationOutDto;
+    }
+
+    public RegistrationOutDto modify(long id, RegistrationInDto registrationInDto) throws RegistrationNotFoundException, UserNotFoundException, WorkshopNotFoundException {
         Registration existingRegistration = registrationRepository.findById(id)
                 .orElseThrow(RegistrationNotFoundException::new);
 
@@ -122,7 +152,13 @@ public class RegistrationService {
             existingRegistration.setRating(rating);
 
             Registration updateRegistration = registrationRepository.save(existingRegistration);
-            return modelMapper.map(updateRegistration, RegistrationOutDto.class);
+
+        // Modificación aplicada: Mapear -> Setear IDs -> Devolver. Evita que workshopId y userId salgan a 0
+            RegistrationOutDto registrationOutDto = modelMapper.map(updateRegistration, RegistrationOutDto.class);
+            registrationOutDto.setUserId(updateRegistration.getUser().getId());
+            registrationOutDto.setWorkshopId(updateRegistration.getWorkshop().getId());
+
+            return registrationOutDto;
         }
 
     }
