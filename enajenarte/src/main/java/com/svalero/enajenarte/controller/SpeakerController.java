@@ -32,6 +32,11 @@ public class SpeakerController {
         @RequestParam(value = "yearsExperience", defaultValue = "") String yearsExperience) {
 
         List<SpeakerOutDto> speakerOutDto = speakerService.findAll(speciality, available, yearsExperience);
+        // Si la lista está vacía, devuelve 204 No Content
+        if( speakerOutDto.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        // Si hay resultados, devuelve 200 Ok con la lista
         return ResponseEntity.ok(speakerOutDto);
     }
 

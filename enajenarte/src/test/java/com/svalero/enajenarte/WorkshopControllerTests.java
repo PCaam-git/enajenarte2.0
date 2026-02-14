@@ -45,7 +45,7 @@ public class WorkshopControllerTests {
     @Test
     public void testGetAll() throws Exception {
         List<WorkshopOutDto> workshopsOutDtoList = List.of(
-                new WorkshopOutDto(1L, "Oratoria básica", "Taller de oratoria y comunicación", LocalDate.of(2026, 2, 10), 90, 25, true, 1L),
+                new WorkshopOutDto(1L, "Oratoria básica", "Taller de oratoria y comunicación", LocalDate.of(2026, 2, 22), 90, 25, true, 1L),
                 new WorkshopOutDto(2L, "Arte terapia", "Taller creativo para autocuidado", LocalDate.of(2026, 3, 5), 120, 30, false, 1L)
         );
 
@@ -186,10 +186,10 @@ public class WorkshopControllerTests {
 
     @Test
     public void testAdd() throws Exception {
-        WorkshopInDto workshopInDto = new WorkshopInDto("Oratoria", "Taller de desarrollo", LocalDate.of(2026, 2, 10), 90, 25, 20, true, 1L
+        WorkshopInDto workshopInDto = new WorkshopInDto("Oratoria", "Taller de desarrollo", LocalDate.of(2026, 5, 10), 90, 25, 20, true, 1L
         );
 
-        WorkshopOutDto workshopOutDto = new WorkshopOutDto(10L, "Oratoria", "Taller de desarrollo", LocalDate.of(2026, 2, 10), 90, 25, true, 1L
+        WorkshopOutDto workshopOutDto = new WorkshopOutDto(10L, "Oratoria", "Taller de desarrollo", LocalDate.of(2026, 5, 10), 90, 25, true, 1L
         );
 
         when(workshopService.add(any(WorkshopInDto.class))).thenReturn(workshopOutDto);
@@ -207,7 +207,7 @@ public class WorkshopControllerTests {
     // Name vacío
     @Test
     public void testAdd_BadRequest() throws Exception {
-        WorkshopInDto invalidWorkshop = new WorkshopInDto("", "Taller de prueba", LocalDate.of(2026, 2, 10), 90, 25, 20, true, 1L
+        WorkshopInDto invalidWorkshop = new WorkshopInDto("", "Taller de prueba", LocalDate.of(2026, 5, 10), 90, 25, 20, true, 1L
         );
 
         String body = objectMapper.writeValueAsString(invalidWorkshop);

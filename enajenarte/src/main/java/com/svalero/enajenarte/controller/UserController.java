@@ -31,6 +31,11 @@ public class UserController {
             @RequestParam(value = "active", defaultValue = "") String active) {
 
         List<UserOutDto> usersOutDto = userService.findAll(username, email, active);
+        // Si la lista está vacía, devuelve 204 No Content
+        if( usersOutDto.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        // Si hay resultados, devuelve 200 Ok con la lista
         return ResponseEntity.ok(usersOutDto);
     }
 

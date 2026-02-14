@@ -20,23 +20,29 @@ public class SpeakerService {
     @Autowired
     public ModelMapper modelMapper;
 
+    // GET (con filtros simultáneos
     public List<SpeakerOutDto> findAll(String speciality, String available, String yearsExperience) {
-        List<Speaker> speakers;
+        final String finalSpeciality = speciality.isEmpty() ? null : speciality.toLowerCase();
+        final Boolean finalAvailable = available.isEmpty() ? null : Boolean.parseBoolean(available);
+        final Integer finalYearsExperience = yearsExperience.isEmpty() ? null : Integer.parseInt(yearsExperience);
 
-        if(!speciality.isEmpty()) {
-            speakers = speakerRepository.findBySpecialityContainingIgnoreCase(speciality);
-        } else if(!available.isEmpty()) {
-            boolean availableValue = Boolean.parseBoolean(available);
-            speakers = speakerRepository.findByAvailable(availableValue);
-        } else if (!yearsExperience.isEmpty()) {
-            int experience = Integer.parseInt(yearsExperience);
-            speakers = speakerRepository.findByYearsExperience(experience);
-        } else {
-            speakers = speakerRepository.findAll();
-        }
-        return modelMapper.map(speakers, new TypeToken<List<SpeakerOutDto>>() {}.getType());
-    }
+        List<Speaker> filteredSpeakers = speakerRepository.findAll().stream()
+                .filter(speaker -> finalSpeciality == null || speaker.getSpeciality().toLowerCase().contains(finalSpeciality))
+                .filter(speaker -> finalAvailable == null || speaker.isAvailable() == finalAvailable)
+                .filter(speaker -> finalYearsExperience == null || speaker.getYearsExperience() == finalYearsExperience)
+                .toList();
 
+        // Mapear a DTOs
+        List<SpeakerOutDto> speakerOutDtoList =
+                modelMapper.map(filteredSpeakers, new TypeToken<List<SpeakerOutDto>>() {
+                }.getType());
+
+       return speakerOutDtoList;
+}
+
+
+
+    // GET by ID
     public SpeakerOutDto findById(long id) throws SpeakerNotFoundException {
         Speaker speaker = speakerRepository.findById(id)
                 .orElseThrow(SpeakerNotFoundException::new);
@@ -44,6 +50,7 @@ public class SpeakerService {
         return modelMapper.map(speaker, SpeakerOutDto.class);
     }
 
+    // POST
     public SpeakerOutDto add(SpeakerInDto speakerInDto) {
         Speaker speaker= modelMapper.map(speakerInDto, Speaker.class);
 
@@ -54,6 +61,7 @@ public class SpeakerService {
         return modelMapper.map(newSpeaker, SpeakerOutDto.class);
     }
 
+    // PUT
     public SpeakerOutDto modify(long id, SpeakerInDto speakerInDto) throws SpeakerNotFoundException {
         Speaker existingSpeaker = speakerRepository.findById(id)
                 .orElseThrow(SpeakerNotFoundException::new);
@@ -68,6 +76,7 @@ public class SpeakerService {
         return modelMapper.map(updateSpeaker, SpeakerOutDto.class);
     }
 
+    // DELETE
     public void delete(long id) throws SpeakerNotFoundException {
         Speaker speaker = speakerRepository.findById(id)
                 .orElseThrow(SpeakerNotFoundException::new);
