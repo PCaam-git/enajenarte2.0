@@ -69,34 +69,28 @@ public class RegistrationService {
         registrationRepository.delete(registration);
     }
 
-    // GET ALL
-    public List<RegistrationOutDto> findAll(String workshopId, String userId, String isPaid) throws WorkshopNotFoundException, UserNotFoundException {
-        List<Registration> registrations;
+    // GET ALL (Con filtros simultáneos)
+    // He eliminado las excepciones para poder probar filtros sin recibir error 404
+    public List<RegistrationOutDto> findAll(String workshopId, String userId, String isPaid) {
 
-        if (!workshopId.isEmpty()) {
-            long workId = Long.parseLong(workshopId);
-            Workshop workshop = workshopRepository.findById(workId)
-                    .orElseThrow(WorkshopNotFoundException::new);
-            registrations = registrationRepository.findByWorkshop(workshop);
-        } else if (!userId.isEmpty()) {
-            long usId = Long.parseLong(userId);
-            User user = userRepository.findById(usId)
-                    .orElseThrow(UserNotFoundException::new);
-            registrations = registrationRepository.findByUser(user);
-        } else if (!isPaid.isEmpty()) {
-            boolean paidValue = Boolean.parseBoolean(isPaid);
-            registrations = registrationRepository.findByIsPaid(paidValue);
+        // Variables finales para el stream. O utiliza el valor asignado en el filtro, o lo marca como null
+        final Long finalWorkshopId = workshopId.isEmpty() ? null : Long.parseLong(workshopId);
+        final Long finalUserId = userId.isEmpty() ? null : Long.parseLong(userId);
+        final Boolean finalIsPaid = isPaid.isEmpty() ? null : Boolean.parseBoolean(isPaid);
 
-        } else {
-            registrations = registrationRepository.findAll();
-        }
+        // Filtrado con stream. Después de filtrar, lo convierte en lista
+        List<Registration> filteredRegistrations = registrationRepository.findAll().stream()
+                .filter(registration -> finalWorkshopId == null || registration.getWorkshop().getId() == finalWorkshopId)
+                .filter(registration -> finalUserId == null || registration.getUser().getId() == finalUserId)
+                .filter(registration -> finalIsPaid == null || registration.isPaid() == finalIsPaid)
+                .toList();
 
-        // Modificación aplicada: Mapear -> Setear IDs -> Devolver. Evita que workshopId y userId salgan a 0
+        // Mapear y setear IDs manualmente para evitar que User o Workshop salgan a 0
         List<RegistrationOutDto> registrationsOutDtos =
-        modelMapper.map(registrations, new TypeToken<List<RegistrationOutDto>>() {}.getType());
+                modelMapper.map(filteredRegistrations, new TypeToken<List<RegistrationOutDto>>() {}.getType());
 
-        for (int i = 0; i < registrations.size(); i++) {
-            Registration registration = registrations.get(i);
+        for (int i = 0; i < filteredRegistrations.size(); i++) {
+            Registration registration = filteredRegistrations.get(i);
             RegistrationOutDto registrationOutDto = registrationsOutDtos.get(i);
 
             if (registration.getUser() != null) {
@@ -106,15 +100,17 @@ public class RegistrationService {
                 registrationOutDto.setWorkshopId(registration.getWorkshop().getId());
             }
         }
-                return registrationsOutDtos;
-        }
+
+        return registrationsOutDtos;
+    }
+
 
         // GET BY ID
     public RegistrationOutDto findById(long id) throws RegistrationNotFoundException {
         Registration registration = registrationRepository.findById(id)
                 .orElseThrow(RegistrationNotFoundException::new);
 
-        // Modificación aplicada: Mapear -> Setear IDs -> Devolver. Evita que workshopId y userId salgan a 0
+        // Mapear -> Setear IDs -> Devolver. Evita que workshopId y userId salgan a 0
         RegistrationOutDto registrationOutDto = modelMapper.map(registration, RegistrationOutDto.class);
         registrationOutDto.setUserId(registration.getUser().getId());
         registrationOutDto.setWorkshopId(registration.getWorkshop().getId());
@@ -122,6 +118,7 @@ public class RegistrationService {
         return registrationOutDto;
     }
 
+    // PUT
     public RegistrationOutDto modify(long id, RegistrationInDto registrationInDto) throws RegistrationNotFoundException, UserNotFoundException, WorkshopNotFoundException {
         Registration existingRegistration = registrationRepository.findById(id)
                 .orElseThrow(RegistrationNotFoundException::new);
@@ -132,7 +129,7 @@ public class RegistrationService {
         Workshop workshop = workshopRepository.findById(registrationInDto.getWorkshopId())
                 .orElseThrow(WorkshopNotFoundException::new);
 
-        // Sistema
+        // Sistema. Estos datos NO se podrán modificar para evita que el usuario haga acciones malintencionadas.
             LocalDate registrationDate = existingRegistration.getRegistrationDate();
             String confirmationCode = existingRegistration.getConfirmationCode();
             boolean paid = existingRegistration.isPaid();
@@ -153,7 +150,7 @@ public class RegistrationService {
 
             Registration updateRegistration = registrationRepository.save(existingRegistration);
 
-        // Modificación aplicada: Mapear -> Setear IDs -> Devolver. Evita que workshopId y userId salgan a 0
+        // Mapear -> Setear IDs -> Devolver. Evita que workshopId y userId salgan a 0
             RegistrationOutDto registrationOutDto = modelMapper.map(updateRegistration, RegistrationOutDto.class);
             registrationOutDto.setUserId(updateRegistration.getUser().getId());
             registrationOutDto.setWorkshopId(updateRegistration.getWorkshop().getId());

@@ -32,6 +32,12 @@ public class EventController {
             @RequestParam(value = "isPublic", defaultValue = "") String isPublic) {
 
         List<EventOutDto> eventsOutDto = eventService.findAll(title, location, isPublic);
+
+        // Si la lista está vacía, devuelve 204 No Content
+        if (eventsOutDto.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        // Si hay resultados, devuelve 200 Ok con la lista
         return ResponseEntity.ok(eventsOutDto);
     }
 

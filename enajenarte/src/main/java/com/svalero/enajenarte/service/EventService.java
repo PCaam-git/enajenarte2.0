@@ -53,28 +53,29 @@ public class EventService {
         eventRepository.delete(event);
     }
 
-    // GET ALL (con filtros)
+    // GET ALL (con filtros simultáneos)
     public List<EventOutDto> findAll(String title, String location, String isPublic) {
-        List<Event> events;
 
-        if (!title.isEmpty()) {
-            events = eventRepository.findByTitleContainingIgnoreCase(title);
-        } else if (!location.isEmpty()){
-            events = eventRepository.findByLocationContainingIgnoreCase(location);
-        } else if (!isPublic.isEmpty()) {
-            boolean publicValue = Boolean.parseBoolean(isPublic);
-            events = eventRepository.findByIsPublic(publicValue);
-        } else {
-            events = eventRepository.findAll();
-        }
+        // Convertir parámetros a variables finales para el stream. Si el filtro no se usa, devuelve null. Si se usa, aplica el valor del filtro
+        final String finalTitle = title.isEmpty() ? null : title.toLowerCase();
+        final String finalLocation = location.isEmpty() ? null : location.toLowerCase();
+        final Boolean finalIsPublic = isPublic.isEmpty() ? null : Boolean.parseBoolean(isPublic);
 
+        // Filtrado con stream
+        List<Event> filteredEvents = eventRepository.findAll().stream()
+                .filter(event -> finalTitle == null || event.getTitle().toLowerCase().contains(finalTitle))
+                .filter(event -> finalLocation == null || event.getLocation().toLowerCase().contains(finalLocation))
+                .filter(event -> finalIsPublic == null || event.isPublic() == finalIsPublic)
+                .toList();
+
+        // Mapear a DTOs
         List<EventOutDto> eventOutDtoList =
-                modelMapper.map(events, new TypeToken<List<EventOutDto>>() {}.getType());
+                modelMapper.map(filteredEvents, new TypeToken<List<EventOutDto>>() {}.getType());
 
-        // Modificación aplicada: Mapear -> Setear IDs -> Devolver. Evita que speaker salga a 0
-        for (int i = 0; i < events.size(); i++) {
-            if (events.get(i).getSpeaker() != null) {
-                eventOutDtoList.get(i).setSpeakerId(events.get(i).getSpeaker().getId());
+        // Setear IDs manualmente para evitar que speakerId salga a 0
+        for (int i = 0; i < filteredEvents.size(); i++) {
+            if (filteredEvents.get(i).getSpeaker() != null) {
+                eventOutDtoList.get(i).setSpeakerId(filteredEvents.get(i).getSpeaker().getId());
             }
         }
 

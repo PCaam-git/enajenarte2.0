@@ -32,6 +32,11 @@ public class WorkshopController {
             @RequestParam(value = "speakerId", defaultValue = "") String speakerId) throws SpeakerNotFoundException {
 
         List<WorkshopOutDto> workshopOutDto = workshopService.findAll(name, isOnline, speakerId);
+        // Si la lista está vacía, devuelve 204 No Content
+        if( workshopOutDto.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        // Si hay resultados, devuelve 200 Ok con la lista
         return ResponseEntity.ok(workshopOutDto);
     }
 
