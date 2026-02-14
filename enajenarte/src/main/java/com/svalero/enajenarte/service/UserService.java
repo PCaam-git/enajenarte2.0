@@ -23,26 +23,35 @@ public class UserService {
 
 
     public List<UserOutDto> findAll(String username, String email, String active) {
-        List<User> users;
-        if (!username.isEmpty()) {
-            users = userRepository.findByUsernameContainingIgnoreCase(username);
-        } else if (!email.isEmpty()) {
-            users = userRepository.findByEmailContainingIgnoreCase(email);
-        } else if (!active.isEmpty()) {
-            boolean activeValue = Boolean.parseBoolean(active);
-            users = userRepository.findByActive(activeValue);
-        } else {
-            users = userRepository.findAll();
-        }
-        return modelMapper.map(users, new TypeToken<List<UserOutDto>>() {}.getType());
+
+        // Convertir parámetros a variables finales para el stream. Si el filtro no se usa, devuelve null. Si se usa, aplica el valor del filtro
+        final String finalUsername = username.isEmpty() ? null : username.toLowerCase();
+        final String finalEmail = email.isEmpty() ? null : email.toLowerCase();
+        final Boolean finalActive = active.isEmpty() ? null : Boolean.parseBoolean(active);
+
+        // filtrado con stream
+        List<User> filteredusers = userRepository.findAll().stream()
+                .filter(user -> finalUsername == null || user.getUsername().toLowerCase().contains(finalUsername))
+                .filter(user -> finalEmail == null || user.getEmail().toLowerCase().contains(finalEmail))
+                .filter(user -> finalActive == null || user.isActive() == finalActive)
+                .toList();
+
+        // Mapear DTOs
+        List<UserOutDto> userOutDtoList =
+                modelMapper.map(filteredusers, new TypeToken<List<UserOutDto>>() {
+                }.getType());
+
+        return userOutDtoList;
     }
 
+    // GET by id
     public UserOutDto findById(long id) throws UserNotFoundException {
         User user = userRepository.findById(id)
                 .orElseThrow(UserNotFoundException::new);
         return modelMapper.map(user, UserOutDto.class);
     }
 
+    // POST
     public UserOutDto add(UserInDto userInDto) {
         User user = modelMapper.map(userInDto, User.class);
 
@@ -50,12 +59,12 @@ public class UserService {
         user.setRole("user");
         user.setActive(true);
         user.setBalance(0);
-        user.setRegistrationDate(LocalDate.now());
 
         User newUser = userRepository.save(user);
         return modelMapper.map(newUser, UserOutDto.class);
     }
 
+    // PUT
     public UserOutDto modify(long id, UserInDto userInDto) throws UserNotFoundException {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(UserNotFoundException::new);
@@ -64,7 +73,7 @@ public class UserService {
         String role = existingUser.getRole();
         boolean active = existingUser.isActive();
         float balance = existingUser.getBalance();
-        LocalDate registrationDate = existingUser.getRegistrationDate();
+
 
         modelMapper.map(userInDto, existingUser);
         existingUser.setId(id);
@@ -72,12 +81,13 @@ public class UserService {
         existingUser.setRole(role);
         existingUser.setActive(active);
         existingUser.setBalance(balance);
-        existingUser.setRegistrationDate(registrationDate);
+
 
         User updateUser = userRepository.save(existingUser);
         return modelMapper.map(updateUser, UserOutDto.class);
     }
 
+    // DELETE
     public void delete(long id) throws UserNotFoundException {
         User user = userRepository.findById(id)
                 .orElseThrow(UserNotFoundException::new);

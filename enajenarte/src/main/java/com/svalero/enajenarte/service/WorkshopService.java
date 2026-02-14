@@ -53,34 +53,33 @@ public class WorkshopService {
     }
 
     // GET ALL (con filtros)
-    public List<WorkshopOutDto> findAll(String name, String isOnline, String speakerId) throws SpeakerNotFoundException {
-        List<Workshop> workshops;
+    // Eliminada la excepción para permitir pruebas con los filtros
+    public List<WorkshopOutDto> findAll(String name, String isOnline, String speakerId) {
 
-        if(!name.isEmpty()) {
-            workshops = workshopRepository.findByNameContainingIgnoreCase(name);
-        } else if(!isOnline.isEmpty()) {
-            boolean onlineValue = Boolean.parseBoolean(isOnline);
-            workshops = workshopRepository.findByIsOnline(onlineValue);
-        } else if(!speakerId.isEmpty()) {
-            long speakId = Long.parseLong(speakerId);
-            Speaker speaker = speakerRepository.findById(speakId)
-                    .orElseThrow(SpeakerNotFoundException::new);
-            workshops = workshopRepository.findBySpeaker(speaker);
-        } else {
-            workshops = workshopRepository.findAll();
-        }
+        // Convertir parámetros a variables finales para el stream. Si el filtro no se usa, devuelve null. Si se usa, aplica el valor del filtro
+        final String finalName = name.isEmpty() ? null : name.toLowerCase();
+        final Boolean finalIsOnline = isOnline.isEmpty() ? null : Boolean.parseBoolean(isOnline);
+        final Long finalSpeakerId = speakerId.isEmpty() ? null : Long.parseLong(speakerId);
 
-        List<WorkshopOutDto> workshopOutDtoList =
-                modelMapper.map(workshops, new TypeToken<List<WorkshopOutDto>>() {}.getType());
+        // Filtrado con Stream. Después de filtrar, lo convierte en lista
+        List<Workshop> filteredWorkshops = workshopRepository.findAll().stream()
+                .filter(workshop -> finalName == null || workshop.getName().toLowerCase().contains(finalName))
+                .filter(workshop -> finalIsOnline == null || workshop.isOnline() == finalIsOnline)
+                .filter(workshop -> finalSpeakerId == null || workshop.getSpeaker().getId() == finalSpeakerId)
+                .toList();
 
-        // Modificación aplicada: Mapear -> Setear IDs -> Devolver. Evita que speakerId salga a 0
-        for (int i = 0; i < workshops.size(); i++) {
-            if (workshops.get(i).getSpeaker() != null) {
-                workshopOutDtoList.get(i).setSpeakerId(workshops.get(i).getSpeaker().getId());
+        // Mapear DTOs
+        List<WorkshopOutDto> workshopsOutDtos =
+                modelMapper.map(filteredWorkshops, new TypeToken<List<WorkshopOutDto>>() {}.getType());
+
+        // Setear IDs -> Devolver. Evita que speakerId salga a 0
+        for (int i = 0; i < filteredWorkshops.size(); i++) {
+            if (filteredWorkshops.get(i).getSpeaker() != null) {
+                workshopsOutDtos.get(i).setSpeakerId(filteredWorkshops.get(i).getSpeaker().getId());
             }
         }
 
-        return workshopOutDtoList;
+        return workshopsOutDtos;
     }
 
     // GET by id

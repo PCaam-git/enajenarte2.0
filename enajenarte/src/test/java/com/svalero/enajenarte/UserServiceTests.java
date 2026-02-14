@@ -38,11 +38,11 @@ public class UserServiceTests {
     @Test
     public void testFindAll() {
         List<User> mockUserList = List.of(
-                new User(1L, "patricia", "pass1", "patricia@mail.com", "Patricia User",
-                        LocalDate.now(), 40, true, 0, "user", null),
-                new User(2L, "mario", "pass2", "mario@mail.com", "Mario User",
-                        LocalDate.now(), 35, true, 0, "user", null)
+                new User(1L, "patricia", "pass1", "patricia@mail.com", "Patricia User"/*LocalDate.now()*/, 40, true, 0, "user", null),
+                new User(2L, "mario", "pass2", "mario@mail.com", "Mario User"
+                        /*LocalDate.now()*/, 35, true, 0, "user", null)
         );
+
 
         List<UserOutDto> modelMapperOut = List.of(
                 new UserOutDto(1L, "patricia", "patricia@mail.com", "Patricia User", "user"),
@@ -68,9 +68,9 @@ public class UserServiceTests {
     public void testFindAllByUsername() {
         List<User> mockUserList = List.of(
                 new User(1L, "patricia", "pass1", "patricia@mail.com", "Patricia User",
-                        null, 40, true, 0, "user", null),
+                        40, true, 0, "user", null),
                 new User(2L, "patricia.dev", "pass2", "patricia.dev@mail.com", "Patricia Dev",
-                        null, 22, true, 0, "user", null)
+                         22, true, 0, "user", null)
         );
 
         List<UserOutDto> modelMapperOut = List.of(
@@ -95,7 +95,7 @@ public class UserServiceTests {
     public void testFindAllByEmail() {
         List<User> userRepositoryUsers = List.of(
                 new User(1L, "patricia", "pass1", "patricia@mail.com", "Patricia User",
-                        null, 40, true, 0, "user", null)
+                        40, true, 0, "user", null)
         );
 
         List<UserOutDto> modelMapperUsersOutDto = List.of(
@@ -119,7 +119,7 @@ public class UserServiceTests {
     public void testFindAllByActive() {
         List<User> userRepositoryUsers = List.of(
                 new User(1L, "patricia", "pass1", "patricia@mail.com", "Patricia User",
-                        null, 40, true, 0, "user", null)
+                        40, true, 0, "user", null)
         );
 
         List<UserOutDto> modelMapperUsersOutDto = List.of(
@@ -191,7 +191,7 @@ public class UserServiceTests {
         assertEquals("user", mappedUser.getRole());
         assertTrue(mappedUser.isActive());
         assertEquals(0, mappedUser.getBalance());
-        assertNotNull(mappedUser.getRegistrationDate());
+//        assertNotNull(mappedUser.getRegistrationDate());
 
         verify(userRepository, times(1)).save(mappedUser);
     }
@@ -232,7 +232,7 @@ public class UserServiceTests {
         existingUser.setRole("user");
         existingUser.setActive(true);
         existingUser.setBalance(0);
-        existingUser.setRegistrationDate(LocalDate.of(2026, 1, 1));
+//        existingUser.setRegistrationDate(LocalDate.of(2026, 1, 1));
 
         User savedUser = new User();
         savedUser.setId(userIdentifier);
@@ -257,7 +257,7 @@ public class UserServiceTests {
         assertEquals("user", existingUser.getRole());
         assertTrue(existingUser.isActive());
         assertEquals(0, existingUser.getBalance());
-        assertEquals(LocalDate.of(2026, 1, 1), existingUser.getRegistrationDate());
+//        assertEquals(LocalDate.of(2026, 1, 1), existingUser.getRegistrationDate());
 
         verify(userRepository, times(1)).findById(userIdentifier);
         verify(userRepository, times(1)).save(existingUser);

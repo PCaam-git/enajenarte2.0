@@ -31,9 +31,15 @@ public class RegistrationController {
             @RequestParam(value = "userId", defaultValue = "") String userId,
             @RequestParam(value = "workshopId", defaultValue = "") String workshopId,
             @RequestParam(value = "isPaid", defaultValue = "") String isPaid)
-            throws UserNotFoundException, WorkshopNotFoundException {
+    {
 
         List<RegistrationOutDto> registrationsOutDto = registrationService.findAll(userId, workshopId, isPaid);
+
+        // Si la lista está vacía, devuelve 204 No content
+        if (registrationsOutDto.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        // Si hay resultados, devuelve 200 Ok con la lista
         return ResponseEntity.ok(registrationsOutDto);
     }
 
